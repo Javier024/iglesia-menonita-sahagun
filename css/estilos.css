@@ -12,6 +12,8 @@ body {
   color: var(--texto);
   scroll-behavior: smooth;
   font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 /* ======== HERO ======== */
@@ -20,7 +22,31 @@ body {
                     url("../assets/iglesia.jpg");
   background-size: cover;
   background-position: center;
-  padding: 4.5rem 0;
+  padding: 5rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==== HERO CONTACTO (ESPECIAL) ==== */
+.hero-contacto {
+  background: linear-gradient(135deg, #14532d, #047857);
+  color: white;
+  padding: 6.5rem 1rem 4rem; /* 🔹 espacio extra arriba para móviles */
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-contacto h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-contacto p {
+  font-size: 1.1rem;
+  color: #f0fdf4;
 }
 
 /* ======== BOTONES ======== */
@@ -170,9 +196,27 @@ footer .btn-success:hover i {
   50% { transform: translateY(-5px); }
 }
 
-/* ======== RESPONSIVE ======== */
+/* ======== NAVBAR MOBILE FIX ======== */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    background-color: white !important;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  .hero-contacto {
+    padding-top: 7rem; /* 🔹 evita que el título quede bajo el navbar */
+  }
+  .hero-contacto h2 {
+    font-size: 1.8rem !important;
+  }
+  .hero-contacto p {
+    font-size: 1rem !important;
+  }
+}
+
+/* ======== HERO GENERAL MOBILE ======== */
 @media (max-width: 576px) {
   .hero {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
   }
 }

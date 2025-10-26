@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>fotos — Iglesia Menonita Nueva Vida</title>
+  <title>Fotos — Iglesia Menonita Nueva Vida</title>
 
   <!-- Bootstrap & Tailwind -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,104 +12,177 @@
 
   <style>
     :root {
-      --verde:#3ba55c;
-      --azul:#2563eb;
-      --fondo:#f9fafb;
-      --texto:#1f2937;
+      --verde: #3ba55c;
+      --azul: #2563eb;
+      --fondo: #f9fafb;
+      --texto: #1f2937;
     }
-    body { background: var(--fondo); color: var(--texto); scroll-behavior: smooth; }
 
-    /* Botones principales */
-    .btn-main { background: linear-gradient(90deg,var(--verde),var(--azul)); color: #fff; border: none; }
-    .btn-main:hover { opacity: 0.9; }
+    body {
+      background: var(--fondo);
+      color: var(--texto);
+      scroll-behavior: smooth;
+      font-family: "Inter", sans-serif;
+    }
 
-    /* Filtros */
-    .filtro-btn { border-radius: 8px; }
-    .filtro-btn.active { background: var(--azul); color: #fff; }
+    /* ===== NAVBAR ===== */
+    .navbar-toggler {
+      border: none;
+    }
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
 
-    /* Tarjetas */
-    .foto-item { border-radius: 14px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: transform 0.3s ease; cursor: pointer; }
-    .foto-item:hover { transform: scale(1.05); }
-    .foto-item img { width: 100%; height: 230px; object-fit: cover; }
-    .foto-info { padding: 1rem; background: #fff; }
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #dcfce7, #dbeafe);
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .hero h2 {
+      font-weight: 700;
+      color: #14532d;
+    }
 
-    /* Modal */
-    .modal-img { width: 100%; border-radius: 12px; }
+    /* ===== BOTONES ===== */
+    .filtro-btn {
+      border-radius: 8px;
+      margin: 0.2rem;
+    }
+    .filtro-btn.active {
+      background: var(--azul);
+      color: white !important;
+    }
 
-    /* Footer */
-    footer { background: #f1f5f9; }
+    /* ===== GALERÍA ===== */
+    .foto-item {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      background: #fff;
+    }
+    .foto-item:hover {
+      transform: scale(1.04);
+    }
+    .foto-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .foto-info {
+      padding: 1rem;
+    }
 
-    /* Botón subir */
+    /* ===== MODAL ===== */
+    .modal-img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #f1f5f9;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    /* ===== BOTÓN VOLVER ARRIBA ===== */
     #backToTop {
       position: fixed;
       right: 1rem;
       bottom: 5.5rem;
       display: none;
       border: none;
-      background: linear-gradient(90deg,var(--verde),var(--azul));
+      background: linear-gradient(90deg, var(--verde), var(--azul));
       color: #fff;
       border-radius: 999px;
       width: 45px;
       height: 45px;
       font-size: 1.2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       z-index: 1000;
-      transition: opacity .3s;
+      transition: opacity 0.3s;
+      animation: pulse 2s infinite;
     }
-    #backToTop:hover { opacity: 0.9; }
+    #backToTop:hover {
+      opacity: 0.9;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .foto-item img {
+        height: 180px;
+      }
+      .hero h2 {
+        font-size: 1.7rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="shadow-sm bg-white sticky-top">
-    <nav class="container d-flex justify-content-between align-items-center py-2">
+    <nav class="navbar navbar-expand-md container py-2">
       <a href="index.html" class="d-flex align-items-center gap-3 text-decoration-none">
-        <img src="assets/logos.jpg" width="64" height="64" class="rounded-circle border">
-        <div class="d-none d-md-block">
-          <h1 class="h5 mb-0">Nueva Vida en Cristo Jesús</h1>
-          <small class="text-muted">Sahagún — Córdoba</small>
+        <img src="assets/logos.jpg" width="56" height="56" class="rounded-circle border">
+        <div>
+          <h1 class="h6 mb-0 text-dark">Nueva Vida en Cristo Jesús</h1>
+          <small class="text-muted d-none d-sm-block">Sahagún — Córdoba</small>
         </div>
       </a>
-      <ul class="nav d-none d-md-flex">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="quienes-somos.html">Quiénes somos</a></li>
-        <li class="nav-item"><a class="nav-link active fw-bold" href="fotos.html">fotos</a></li>
-        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-      </ul>
+
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <i class="fas fa-bars text-green-700 fs-3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav text-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="quienes-somos.html">Quiénes somos</a></li>
+          <li class="nav-item"><a class="nav-link active fw-semibold text-green-700" href="fotos.html">Fotos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="text-center py-5 bg-gradient-to-r from-green-100 to-blue-100">
+  <section class="hero">
     <div class="container">
-      <h2 class="fw-bold mb-2 text-3xl">Actividades y Galería</h2>
+      <h2 class="mb-2">Actividades y Galería</h2>
       <p class="text-muted">Explora nuestras actividades y proyectos junto a Justapaz y la CCM.</p>
     </div>
   </section>
 
-  <!-- BOTONES DE FILTRO -->
+  <!-- FILTROS -->
   <div class="container text-center my-4">
-    <div class="btn-group flex-wrap">
-      <button class="btn btn-outline-dark filtro-btn active" data-filtro="todos">Todas las actividades</button>
+    <div class="btn-group flex-wrap justify-content-center">
+      <button class="btn btn-outline-dark filtro-btn active" data-filtro="todos">Todas</button>
       <button class="btn btn-outline-success filtro-btn" data-filtro="iglesia">Iglesia</button>
       <button class="btn btn-outline-primary filtro-btn" data-filtro="justapaz">Justapaz</button>
       <button class="btn btn-outline-info filtro-btn" data-filtro="ccm">CCM</button>
     </div>
   </div>
 
-  <!-- GALERÍA DE FOTOS -->
+  <!-- GALERÍA -->
   <section class="container py-4">
     <div class="row g-4" id="galeria">
       <!-- Iglesia -->
-      <div class="col-md-4 foto-item" data-cat="iglesia">
+      <div class="col-sm-6 col-lg-4 foto-item" data-cat="iglesia">
         <img src="assets/iglesia1.jpg" alt="Culto Dominical">
         <div class="foto-info">
           <h6 class="fw-bold">Culto Dominical</h6>
           <small class="text-muted">Reunión de adoración y enseñanza.</small>
         </div>
       </div>
-      <div class="col-md-4 foto-item" data-cat="iglesia">
+      <div class="col-sm-6 col-lg-4 foto-item" data-cat="iglesia">
         <img src="assets/iglesia2.jpg" alt="Escuela Bíblica">
         <div class="foto-info">
           <h6 class="fw-bold">Escuela Bíblica</h6>
@@ -118,14 +191,14 @@
       </div>
 
       <!-- Justapaz -->
-      <div class="col-md-4 foto-item" data-cat="justapaz">
+      <div class="col-sm-6 col-lg-4 foto-item" data-cat="justapaz">
         <img src="assets/justapaz1.jpg" alt="Taller de Paz">
         <div class="foto-info">
           <h6 class="fw-bold">Taller de Paz y Reconciliación</h6>
           <small class="text-muted">Promoviendo la justicia y la convivencia pacífica.</small>
         </div>
       </div>
-      <div class="col-md-4 foto-item" data-cat="justapaz">
+      <div class="col-sm-6 col-lg-4 foto-item" data-cat="justapaz">
         <img src="assets/justapaz2.jpg" alt="Foro Comunitario">
         <div class="foto-info">
           <h6 class="fw-bold">Foro Comunitario</h6>
@@ -134,14 +207,14 @@
       </div>
 
       <!-- CCM -->
-      <div class="col-md-4 foto-item" data-cat="ccm">
-        <img src="assets/ccm1.jpg" alt="Campaña de ayuda">
+      <div class="col-sm-6 col-lg-4 foto-item" data-cat="ccm">
+        <img src="assets/ccm1.jpg" alt="Campaña de Ayuda">
         <div class="foto-info">
           <h6 class="fw-bold">Campaña de Ayuda</h6>
           <small class="text-muted">Entrega de alimentos y acompañamiento solidario.</small>
         </div>
       </div>
-      <div class="col-md-4 foto-item" data-cat="ccm">
+      <div class="col-sm-6 col-lg-4 foto-item" data-cat="ccm">
         <img src="assets/ccm2.jpg" alt="Voluntariado CCM">
         <div class="foto-info">
           <h6 class="fw-bold">Voluntariado CCM</h6>
@@ -152,21 +225,14 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-4 bg-slate-100">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-      <div>
-        <strong>Iglesia Menonita Nueva Vida en Cristo Jesús</strong><br>
-        <small class="text-muted">Sahagún — Córdoba</small>
-      </div>
-      
-      <div><small>© <span id="year"></span> Nueva Vida en Cristo Jesús</small></div>
-    </div>
+  <footer>
+    <small>© <span id="year"></span> Iglesia Menonita Nueva Vida en Cristo Jesús</small>
   </footer>
 
   <!-- BOTÓN VOLVER ARRIBA -->
   <button id="backToTop" title="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
 
-  <!-- MODAL DE IMAGEN -->
+  <!-- MODAL IMAGEN -->
   <div class="modal fade" id="fotoModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content border-0">
@@ -175,14 +241,14 @@
     </div>
   </div>
 
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Mostrar año actual
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Filtros
     const btns = document.querySelectorAll(".filtro-btn");
     const fotos = document.querySelectorAll(".foto-item");
-
     btns.forEach(btn => {
       btn.addEventListener("click", () => {
         btns.forEach(x => x.classList.remove("active"));
@@ -204,7 +270,7 @@
       });
     });
 
-    // Botón subir arriba
+    // Botón volver arriba
     const backToTop = document.getElementById("backToTop");
     window.addEventListener("scroll", () => {
       backToTop.style.display = window.scrollY > 300 ? "block" : "none";
@@ -213,3 +279,4 @@
   </script>
 </body>
 </html>
+

@@ -2,173 +2,228 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Iglesia Menonita — Nueva Vida en Cristo Jesús</title>
   <meta name="description" content="Iglesia Menonita Nueva Vida en Cristo Jesús — Sahagún, Córdoba. Adoración, enseñanza y servicio.">
 
-  <!-- Bootstrap & Tailwind -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Estilos -->
   <style>
     :root {
-      --verde:#3ba55c;
-      --azul:#2563eb;
-      --dorado:#facc15;
-      --fondo:#f9fafb;
-      --texto:#1f2937;
+      --verde: #3ba55c;
+      --azul: #2563eb;
+      --fondo: #f9fafb;
+      --texto: #1f2937;
     }
-    body { background: var(--fondo); color: var(--texto); scroll-behavior: smooth; }
+
+    body {
+      background: var(--fondo);
+      color: var(--texto);
+      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* HERO */
     .hero {
-      background-image: linear-gradient(120deg, rgba(59,165,92,0.06), rgba(37,99,235,0.04)), url('assets/hero-bg.jpg');
+      background-image: linear-gradient(120deg, rgba(59,165,92,0.08), rgba(37,99,235,0.06)), url('assets/hero-bg.jpg');
       background-size: cover;
       background-position: center;
-      padding: 4.5rem 0;
+      padding: 4rem 1rem;
+      color: var(--texto);
     }
-    .card-cta { border-radius: 14px; box-shadow: 0 8px 24px rgba(16,24,40,0.06); transition: all .3s ease; }
-    .card-cta:hover { transform: translateY(-5px); box-shadow: 0 10px 28px rgba(16,24,40,0.12); }
-    .btn-main { background: linear-gradient(90deg,var(--verde),var(--azul)); border: none; color: white; }
-    .btn-outline-main { border-color: var(--azul); color: var(--azul); }
-    .social-btn { border-radius: 10px; padding: .6rem .9rem; display:inline-flex; align-items:center; gap:.5rem; }
-    .feature-icon { width:56px; height:56px; display:grid; place-items:center; border-radius:12px; background:rgba(37,99,235,0.08); color:var(--azul); }
-    .section-sub { color: #6b7280; }
-    footer { background:#f1f5f9; }
-    footer a { transition: all .2s; }
-    footer a:hover { transform: scale(1.1); }
-    #backToTop { animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
-    /* 🔹 Efecto de animación al hacer scroll */
+    /* Tarjetas */
+    .card-cta {
+      border-radius: 1rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-cta:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    /* Botones */
+    .btn-main {
+      background: linear-gradient(90deg, var(--verde), var(--azul));
+      color: white;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-main:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+    .btn-outline-main {
+      border-color: var(--azul);
+      color: var(--azul);
+    }
+    .btn-outline-main:hover {
+      background-color: var(--azul);
+      color: white;
+    }
+
+    /* Animación fade-in */
     .fade-in {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease-out, transform 1s ease-out;
+      transform: translateY(25px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    @media (max-width:576px){ .hero { padding:3rem 0 } }
+    /* Footer */
+    footer {
+      background: #f1f5f9;
+    }
+    footer a:hover {
+      transform: scale(1.1);
+    }
+
+    /* Botón subir */
+    #backToTop {
+      position: fixed;
+      right: 1rem;
+      bottom: 5rem;
+      display: none;
+      border-radius: 999px;
+      width: 50px;
+      height: 50px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        text-align: center;
+        padding: 3rem 1rem;
+      }
+      .hero img {
+        width: 100%;
+        height: auto;
+      }
+      footer {
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="shadow-sm bg-white sticky-top">
-    <nav class="container d-flex justify-content-between align-items-center py-2">
-      <a class="d-flex align-items-center gap-3 text-decoration-none" href="index.html">
-        <img src="assets/logos.jpg" alt="Logo" width="64" height="64" class="rounded-circle border">
-        <div class="d-none d-md-block">
-          <h1 class="h5 mb-0">Nueva Vida en Cristo Jesús</h1>
+    <nav class="navbar navbar-expand-md navbar-light bg-white container">
+      <a href="index.html" class="navbar-brand d-flex align-items-center gap-2">
+        <img src="assets/logos.jpg" alt="Logo Iglesia" width="56" height="56" class="rounded-circle border">
+        <div>
+          <h1 class="h6 mb-0 fw-semibold">Nueva Vida en Cristo Jesús</h1>
           <small class="text-muted">Sahagún — Córdoba</small>
         </div>
       </a>
 
-      <ul class="nav d-none d-md-flex">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="quienes-somos.html">Quiénes somos</a></li>
-        <li class="nav-item"><a class="nav-link" href="fotos.html">Fotos</a></li>
-        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-      </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
+        <ul class="navbar-nav text-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="quienes-somos.html">Quiénes somos</a></li>
+          <li class="nav-item"><a class="nav-link" href="fotos.html">Fotos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="hero text-dark py-5">
+  <section class="hero fade-in">
     <div class="container">
       <div class="row align-items-center justify-content-center g-4">
-        <!-- TEXTO -->
-        <div class="col-lg-6 text-center text-lg-start fade-in">
-          <h2 class="display-5 fw-bold">Bienvenidos a la comunidad <span style="color:var(--verde)">Nueva Vida</span> en Cristo Jesús</h2>
-          <p class="lead mt-3 section-sub">
-            Una comunidad menonita que vive la Palabra, adora con pasión y sirve con amor.
-          </p>
-          <div class="mt-4">
-            <a class="btn btn-main btn-lg me-2" href="contacto.html">Nos encontramos aquí</a>
-            <a class="btn btn-outline-main btn-lg" href="quienes-somos.html">Conócenos</a>
+        <div class="col-lg-6 text-center text-lg-start">
+          <h2 class="fw-bold mb-3">Bienvenidos a la comunidad <span style="color:var(--verde)">Nueva Vida</span> en Cristo Jesús</h2>
+          <p class="lead mb-4">Una comunidad menonita que vive la Palabra, adora con pasión y sirve con amor.</p>
+          <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
+            <a href="contacto.html" class="btn btn-main btn-lg">Nos encontramos aquí</a>
+            <a href="quienes-somos.html" class="btn btn-outline-main btn-lg">Conócenos</a>
           </div>
         </div>
-
-        <!-- FOTO -->
-        <div class="col-lg-5 fade-in">
-          <div class="rounded-3 overflow-hidden shadow-lg">
-            <img src="assets/iglesia.jpg" alt="Iglesia Nueva Vida en Cristo Jesús" class="img-fluid">
-          </div>
+        <div class="col-lg-5 text-center">
+          <img src="assets/iglesia.jpg" alt="Iglesia Nueva Vida en Cristo Jesús" class="img-fluid rounded-3 shadow-lg">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MENSAJE SEMANAL -->
-  <section class="py-6 bg-white fade-in">
+  <!-- MENSAJE -->
+  <section class="py-5 bg-white fade-in">
     <div class="container text-center">
-      <h3 class="mb-3 fw-bold">Nuestro Mensaje</h3>
-      <p class="section-sub mb-4">Creemos en la transformación por medio de Jesucristo y en la importancia de la comunidad.</p>
-      <blockquote class="p-4 rounded card-cta mx-auto" style="max-width:800px; font-style:italic;">
+      <h3 class="fw-bold mb-3">Nuestro Mensaje</h3>
+      <p class="text-muted mb-4">Creemos en la transformación por medio de Jesucristo y en la importancia de la comunidad.</p>
+      <blockquote class="p-4 rounded card-cta mx-auto" style="max-width: 800px; font-style: italic;">
         “Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.”  
         <br><strong>— Mateo 18:20</strong>
       </blockquote>
     </div>
   </section>
 
-  <!-- PRÓXIMOS EVENTOS -->
-  <section class="py-6 fade-in">
+  <!-- EVENTOS -->
+  <section class="py-5 fade-in">
     <div class="container">
       <div class="text-center mb-5">
-       <h3 class="mb-3 fw-bold">Nuestros Eventos</h3>
-        <p class="section-sub">Actividades abiertas a la comunidad — ¡te esperamos!</p>
+        <h3 class="fw-bold mb-3">Nuestros Eventos</h3>
+        <p class="text-muted">Actividades abiertas a la comunidad — ¡te esperamos!</p>
       </div>
       <div class="row g-4">
         <div class="col-md-4">
-          <div class="card-cta bg-white p-4 text-center h-100">
-            <i class="fa fa-church fa-2x mb-3" style="color:var(--azul)"></i>
-            <h6>Culto Dominical</h6>
-            <p class="text-muted small">Domingo • 9:00 AM • 11:00 AM</p>
+          <div class="card-cta p-4 text-center bg-white h-100">
+            <i class="fa fa-church fa-2x mb-3 text-primary"></i>
+            <h6 class="fw-semibold">Culto Dominical</h6>
+            <p class="text-muted small">Domingo • 9:00 AM / 11:00 AM</p>
             <p class="small">Predicación bíblica, adoración y comunión.</p>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="card-cta bg-white p-4 text-center h-100">
-            <i class="fa fa-book-bible fa-2x mb-3" style="color:var(--verde)"></i>
-            <h6>Escuela Bíblica</h6>
+          <div class="card-cta p-4 text-center bg-white h-100">
+            <i class="fa fa-book-bible fa-2x mb-3 text-success"></i>
+            <h6 class="fw-semibold">Escuela Bíblica</h6>
             <p class="text-muted small">Jueves • 6:00 PM</p>
-            <p class="small">Discipulados.</p>
+            <p class="small">Discipulados para crecer en la fe.</p>
           </div>
         </div>
-
-
         <div class="col-md-4">
-          <div class="card-cta bg-white p-4 text-center h-100">
-            <i class="fa fa-users fa-2x mb-3" style="color:var(--azul)"></i>
-            <h6>Ministerio de Jovenes, niños y adolescentes</h6>
-            <p class="text-muted small">Sábado de talleres • 3:00 PM - 5:00 PM</p>
-            <p class="small">Formación, Recreación, y Convivencia.</p>
+          <div class="card-cta p-4 text-center bg-white h-100">
+            <i class="fa fa-users fa-2x mb-3 text-primary"></i>
+            <h6 class="fw-semibold">Ministerio de Jóvenes y Niños</h6>
+            <p class="text-muted small">Sábado • 3:00 PM - 5:00 PM</p>
+            <p class="small">Formación, recreación y convivencia.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-
   <!-- CTA FINAL -->
-  <section class="py-6 text-center fade-in">
+  <section class="py-5 text-center fade-in">
     <div class="container">
-      <div class="p-4 rounded card-cta mx-auto" style="max-width:900px;">
+      <div class="card-cta p-4 mx-auto" style="max-width: 900px;">
         <h4 class="mb-2">Únete a nuestra familia</h4>
         <p class="text-muted mb-3">Si quieres visitar o necesitas ayuda, comunícate con nosotros.</p>
-        <a class="btn btn-main btn-lg me-2" href="https://wa.me/573001234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a class="btn btn-outline-main btn-lg" href="contacto.html">Enviar mensaje</a>
+        <a href="https://wa.me/573016838490" target="_blank" class="btn btn-main btn-lg me-2">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="contacto.html" class="btn btn-outline-main btn-lg">Enviar mensaje</a>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-4 mt-5 shadow-inner">
+  <footer class="py-4 mt-5 shadow-inner text-center text-md-start">
     <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
       <div>
         <strong>Nueva Vida en Cristo Jesús</strong><br>
@@ -177,17 +232,14 @@
       <div class="d-flex gap-2">
         <a class="btn btn-outline-dark" href="https://instagram.com/iglesianuevavida" target="_blank"><i class="fab fa-instagram"></i></a>
         <a class="btn btn-outline-primary" href="https://facebook.com/iglesianuevavida" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a class="btn btn-success" href="https://wa.me/573001234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a class="btn btn-success" href="https://wa.me/573016838490" target="_blank"><i class="fab fa-whatsapp"></i></a>
       </div>
       <div><small>© <span id="year"></span> Iglesia Menonita «Nueva Vida en Cristo Jesús»</small></div>
     </div>
   </footer>
 
-  <!-- BOTÓN VOLVER ARRIBA -->
-  <button id="backToTop" class="btn btn-main position-fixed" title="Volver arriba"
-    style="right:1rem; bottom:5.5rem; display:none; border-radius:999px; width:50px; height:50px;">
-    <i class="fa fa-arrow-up"></i>
-  </button>
+  <!-- Botón subir -->
+  <button id="backToTop" class="btn btn-main"><i class="fa fa-arrow-up"></i></button>
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -200,7 +252,6 @@
       });
       back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-      // 🔹 Efecto de fade-in al hacer scroll
       const elements = document.querySelectorAll('.fade-in');
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
