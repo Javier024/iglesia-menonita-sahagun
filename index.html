@@ -1,266 +1,204 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Iglesia Menonita — Nueva Vida en Cristo Jesús</title>
   <meta name="description" content="Iglesia Menonita Nueva Vida en Cristo Jesús — Sahagún, Córdoba. Adoración, enseñanza y servicio.">
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Iconos -->
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Iconos Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    :root {
-      --verde: #3ba55c;
-      --azul: #2563eb;
-      --fondo: #f9fafb;
-      --texto: #1f2937;
-    }
+    html { scroll-behavior: smooth; }
+    .fade-in { opacity: 0; transform: translateY(25px); transition: all 0.8s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    body {
-      background: var(--fondo);
-      color: var(--texto);
-      scroll-behavior: smooth;
-      font-family: 'Inter', sans-serif;
-    }
-
-    /* HERO */
-    .hero {
-      background-image: linear-gradient(120deg, rgba(59,165,92,0.08), rgba(37,99,235,0.06)), url('assets/hero-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 4rem 1rem;
-      color: var(--texto);
-    }
-
-    /* Tarjetas */
-    .card-cta {
-      border-radius: 1rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-cta:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    }
-
-    /* Botones */
-    .btn-main {
-      background: linear-gradient(90deg, var(--verde), var(--azul));
-      color: white;
-      border: none;
-      transition: 0.3s;
-    }
-    .btn-main:hover {
-      opacity: 0.9;
-      transform: scale(1.02);
-    }
-    .btn-outline-main {
-      border-color: var(--azul);
-      color: var(--azul);
-    }
-    .btn-outline-main:hover {
-      background-color: var(--azul);
-      color: white;
-    }
-
-    /* Animación fade-in */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(25px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Footer */
-    footer {
-      background: #f1f5f9;
-    }
-    footer a:hover {
-      transform: scale(1.1);
-    }
-
-    /* Botón subir */
-    #backToTop {
-      position: fixed;
-      right: 1rem;
-      bottom: 5rem;
-      display: none;
-      border-radius: 999px;
-      width: 50px;
-      height: 50px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-      z-index: 999;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        text-align: center;
-        padding: 3rem 1rem;
-      }
-      .hero img {
-        width: 100%;
-        height: auto;
-      }
-      footer {
-        text-align: center;
-      }
+    /* Carrusel */
+    #versiculos {
+      transition: opacity 0.8s ease;
     }
   </style>
 </head>
-<body>
+
+<body class="bg-green-50 text-emerald-900 font-sans">
 
   <!-- HEADER -->
-  <header class="shadow-sm bg-white sticky-top">
-    <nav class="navbar navbar-expand-md navbar-light bg-white container">
-      <a href="index.html" class="navbar-brand d-flex align-items-center gap-2">
-        <img src="assets/logos.jpg" alt="Logo Iglesia" width="56" height="56" class="rounded-circle border">
+  <header class="sticky top-0 z-50 bg-emerald-800 text-white shadow-lg">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/logos.jpg" alt="Logo Iglesia" class="w-14 h-14 rounded-full border-2 border-white">
         <div>
-          <h1 class="h6 mb-0 fw-semibold">Nueva Vida en Cristo Jesús</h1>
-          <small class="text-muted">Sahagún — Córdoba</small>
+          <h1 class="text-base font-semibold">Nueva Vida en Cristo Jesús</h1>
+          <p class="text-sm text-emerald-100">Sahagún — Córdoba</p>
         </div>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-        <span class="navbar-toggler-icon"></span>
+      <button id="menuBtn" class="md:hidden text-2xl">
+        <i class="fa fa-bars"></i>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-end" id="menu">
-        <ul class="navbar-nav text-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="quienes-somos.html">Quiénes somos</a></li>
-          <li class="nav-item"><a class="nav-link" href="fotos.html">Fotos</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-        </ul>
-      </div>
+      <ul id="menu" class="hidden md:flex space-x-6 font-medium">
+        <li><a href="index.html" class="hover:text-yellow-300">Inicio</a></li>
+        <li><a href="quienes-somos.html" class="hover:text-yellow-300">Quiénes somos</a></li>
+        <li><a href="fotos.html" class="hover:text-yellow-300">Fotos</a></li>
+        <li><a href="contacto.html" class="hover:text-yellow-300">Contacto</a></li>
+      </ul>
     </nav>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden md:hidden bg-emerald-700 border-t border-emerald-600">
+      <ul class="flex flex-col text-center py-3 space-y-2 text-white">
+        <li><a href="index.html" class="block py-1 hover:text-yellow-300">Inicio</a></li>
+        <li><a href="quienes-somos.html" class="block py-1 hover:text-yellow-300">Quiénes somos</a></li>
+        <li><a href="fotos.html" class="block py-1 hover:text-yellow-300">Fotos</a></li>
+        <li><a href="contacto.html" class="block py-1 hover:text-yellow-300">Contacto</a></li>
+      </ul>
+    </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero fade-in">
-    <div class="container">
-      <div class="row align-items-center justify-content-center g-4">
-        <div class="col-lg-6 text-center text-lg-start">
-          <h2 class="fw-bold mb-3">Bienvenidos a la comunidad <span style="color:var(--verde)">Nueva Vida</span> en Cristo Jesús</h2>
-          <p class="lead mb-4">Una comunidad menonita que vive la Palabra, adora con pasión y sirve con amor.</p>
-          <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
-            <a href="contacto.html" class="btn btn-main btn-lg">Nos encontramos aquí</a>
-            <a href="quienes-somos.html" class="btn btn-outline-main btn-lg">Conócenos</a>
-          </div>
+  <section class="fade-in bg-cover bg-center py-20 px-4" style="background-image: linear-gradient(120deg, rgba(59,165,92,0.15), rgba(37,99,235,0.10)), url('assets/hero-bg.jpg');">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
+      <div class="md:w-1/2 text-center md:text-left">
+        <h2 class="text-4xl md:text-5xl font-bold mb-3 text-emerald-900">Bienvenidos a la comunidad <span class="text-green-700">Nueva Vida</span> en Cristo Jesús</h2>
+        <p class="text-lg mb-6 text-emerald-700">Una comunidad menonita que vive la Palabra, adora con pasión y sirve con amor.</p>
+        <div class="flex flex-wrap justify-center md:justify-start gap-3">
+          <a href="contacto.html" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition">Nos encontramos aquí</a>
+          <a href="quienes-somos.html" class="border border-green-700 text-green-700 px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white transition">Conócenos</a>
         </div>
-        <div class="col-lg-5 text-center">
-          <img src="assets/iglesia.jpg" alt="Iglesia Nueva Vida en Cristo Jesús" class="img-fluid rounded-3 shadow-lg">
-        </div>
+      </div>
+      <div class="md:w-1/2">
+        <img src="assets/iglesia.jpg" alt="Iglesia Nueva Vida" class="rounded-2xl shadow-2xl w-full max-h-[520px] object-cover border-4 border-emerald-100">
       </div>
     </div>
   </section>
 
   <!-- MENSAJE -->
-  <section class="py-5 bg-white fade-in">
-    <div class="container text-center">
-      <h3 class="fw-bold mb-3">Nuestro Mensaje</h3>
-      <p class="text-muted mb-4">Creemos en la transformación por medio de Jesucristo y en la importancia de la comunidad.</p>
-      <blockquote class="p-4 rounded card-cta mx-auto" style="max-width: 800px; font-style: italic;">
-        “Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.”  
-        <br><strong>— Mateo 18:20</strong>
-      </blockquote>
+  <section class="fade-in py-12 bg-emerald-100 text-center">
+    <h3 class="text-3xl font-bold mb-3">Nuestro Mensaje</h3>
+    <p class="text-emerald-700 mb-6">Creemos en la transformación por medio de Jesucristo y en la importancia de la comunidad.</p>
+    <blockquote class="bg-white p-6 mx-auto rounded-xl shadow max-w-2xl italic border-l-4 border-emerald-600">
+      “Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.”  
+      <br><strong class="block mt-2">— Mateo 18:20</strong>
+    </blockquote>
+  </section>
+
+  <!-- CARRUSEL BÍBLICO -->
+  <section class="fade-in bg-white py-16 text-center relative overflow-hidden shadow-inner">
+    <h3 class="text-3xl font-bold text-emerald-900 mb-6">Palabra que edifica</h3>
+    <div id="versiculos" class="text-xl italic text-gray-700 transition-opacity duration-700">
+      “El Señor es mi pastor; nada me faltará.”  
+      <br><span class="text-green-700 font-semibold">— Salmo 23:1</span>
     </div>
   </section>
 
   <!-- EVENTOS -->
-  <section class="py-5 fade-in">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h3 class="fw-bold mb-3">Nuestros Eventos</h3>
-        <p class="text-muted">Actividades abiertas a la comunidad — ¡te esperamos!</p>
+  <section class="fade-in py-14 bg-green-100">
+    <div class="max-w-7xl mx-auto text-center mb-10">
+      <h3 class="text-3xl font-bold mb-3">Nuestros Eventos</h3>
+      <p class="text-emerald-700">Actividades abiertas a la comunidad — ¡te esperamos!</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 px-4">
+      <div class="bg-white p-6 rounded-xl shadow hover:-translate-y-1 transition border-t-4 border-green-500">
+        <i class="fa fa-church text-green-600 text-3xl mb-3"></i>
+        <h6 class="font-semibold">Culto Dominical</h6>
+        <p class="text-gray-600 text-sm">Domingo • 9:00 AM / 11:00 AM</p>
+        <p class="text-sm mt-2">Predicación bíblica, adoración y comunión.</p>
       </div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card-cta p-4 text-center bg-white h-100">
-            <i class="fa fa-church fa-2x mb-3 text-primary"></i>
-            <h6 class="fw-semibold">Culto Dominical</h6>
-            <p class="text-muted small">Domingo • 9:00 AM / 11:00 AM</p>
-            <p class="small">Predicación bíblica, adoración y comunión.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-cta p-4 text-center bg-white h-100">
-            <i class="fa fa-book-bible fa-2x mb-3 text-success"></i>
-            <h6 class="fw-semibold">Escuela Bíblica</h6>
-            <p class="text-muted small">Jueves • 6:00 PM</p>
-            <p class="small">Discipulados para crecer en la fe.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-cta p-4 text-center bg-white h-100">
-            <i class="fa fa-users fa-2x mb-3 text-primary"></i>
-            <h6 class="fw-semibold">Ministerio de Jóvenes y Niños</h6>
-            <p class="text-muted small">Sábado • 3:00 PM - 5:00 PM</p>
-            <p class="small">Formación, recreación y convivencia.</p>
-          </div>
-        </div>
+
+      <div class="bg-white p-6 rounded-xl shadow hover:-translate-y-1 transition border-t-4 border-blue-500">
+        <i class="fa fa-book-bible text-blue-600 text-3xl mb-3"></i>
+        <h6 class="font-semibold">Escuela Bíblica</h6>
+        <p class="text-gray-600 text-sm">Jueves • 6:00 PM</p>
+        <p class="text-sm mt-2">Discipulados para crecer en la fe.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow hover:-translate-y-1 transition border-t-4 border-emerald-400">
+        <i class="fa fa-users text-green-700 text-3xl mb-3"></i>
+        <h6 class="font-semibold">Ministerio de Jóvenes y Niños</h6>
+        <p class="text-gray-600 text-sm">Sábado • 3:00 PM - 5:00 PM</p>
+        <p class="text-sm mt-2">Formación, recreación y convivencia.</p>
       </div>
     </div>
   </section>
 
   <!-- CTA FINAL -->
-  <section class="py-5 text-center fade-in">
-    <div class="container">
-      <div class="card-cta p-4 mx-auto" style="max-width: 900px;">
-        <h4 class="mb-2">Únete a nuestra familia</h4>
-        <p class="text-muted mb-3">Si quieres visitar o necesitas ayuda, comunícate con nosotros.</p>
-        <a href="https://wa.me/573016838490" target="_blank" class="btn btn-main btn-lg me-2">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="contacto.html" class="btn btn-outline-main btn-lg">Enviar mensaje</a>
-      </div>
+  <section class="fade-in py-16 text-center bg-emerald-50">
+    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 border border-emerald-100">
+      <h4 class="text-2xl font-semibold mb-2 text-emerald-900">Únete a nuestra familia</h4>
+      <p class="text-emerald-700 mb-5">Si quieres visitar o necesitas ayuda, comunícate con nosotros.</p>
+      <a href="https://wa.me/573016838490" target="_blank" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition mr-2 shadow">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a href="contacto.html" class="border border-green-700 text-green-700 px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white transition shadow">
+        Enviar mensaje
+      </a>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-4 mt-5 shadow-inner text-center text-md-start">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+  <footer class="bg-emerald-800 text-emerald-100 py-6 text-center md:text-left shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 px-4">
       <div>
-        <strong>Nueva Vida en Cristo Jesús</strong><br>
-        <small class="text-muted">Sahagún — Córdoba</small>
+        <strong>Colombia</strong><br>
+        <small class="text-emerald-200">Sahagún — Córdoba</small>
       </div>
-      <div class="d-flex gap-2">
-        <a class="btn btn-outline-dark" href="https://instagram.com/iglesianuevavida" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a class="btn btn-outline-primary" href="https://facebook.com/iglesianuevavida" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a class="btn btn-success" href="https://wa.me/573016838490" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <div class="flex gap-3 text-xl">
+        <a href="https://instagram.com/iglesianuevavida" target="_blank" class="hover:text-pink-400"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/iglesianuevavida" target="_blank" class="hover:text-blue-400"><i class="fab fa-facebook"></i></a>
+        <a href="https://wa.me/573016838490" target="_blank" class="hover:text-green-400"><i class="fab fa-whatsapp"></i></a>
       </div>
-      <div><small>© <span id="year"></span> Iglesia Menonita «Nueva Vida en Cristo Jesús»</small></div>
+      <div><small>© <span id="year"></span> Comunidad Cristiana Menonita Nueva Vida en Cristo Jesús</small></div>
     </div>
   </footer>
 
-  <!-- Botón subir -->
-  <button id="backToTop" class="btn btn-main"><i class="fa fa-arrow-up"></i></button>
+  <!-- BOTÓN SUBIR -->
+  <button id="backToTop" class="hidden fixed bottom-10 right-6 bg-gradient-to-r from-green-600 to-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition flex items-center justify-center">
+    <i class="fa-solid fa-arrow-up text-xl"></i>
+  </button>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('year').textContent = new Date().getFullYear();
-      const back = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        back.style.display = window.scrollY > 300 ? 'block' : 'none';
-      });
-      back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-      const elements = document.querySelectorAll('.fade-in');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.2 });
-      elements.forEach(el => observer.observe(el));
+    const back = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => back.classList.toggle('hidden', window.scrollY < 300));
+    back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const elements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    elements.forEach(el => observer.observe(el));
+
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
     });
+
+    // Carrusel de versículos
+    const versos = [
+      { texto: "El Señor es mi pastor; nada me faltará.", cita: "Salmo 23:1" },
+      { texto: "Todo lo puedo en Cristo que me fortalece.", cita: "Filipenses 4:13" },
+      { texto: "Confía en el Señor de todo corazón.", cita: "Proverbios 3:5" },
+      { texto: "Jesucristo es el mismo ayer, hoy y por los siglos.", cita: "Hebreos 13:8" },
+      { texto: "El amor nunca deja de ser.", cita: "1 Corintios 13:8" }
+    ];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % versos.length;
+      const div = document.getElementById("versiculos");
+      div.style.opacity = 0;
+      setTimeout(() => {
+        div.innerHTML = `“${versos[index].texto}”<br><span class='text-green-700 font-semibold'>— ${versos[index].cita}</span>`;
+        div.style.opacity = 1;
+      }, 700);
+    }, 5000);
   </script>
 </body>
 </html>
-
