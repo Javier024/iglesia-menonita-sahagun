@@ -1,0 +1,178 @@
+:root {
+  --verde: #3ba55c;
+  --azul: #2563eb;
+  --dorado: #facc15;
+  --fondo: #f9fafb;
+  --texto: #1f2937;
+}
+
+/* ======== BASE ======== */
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  scroll-behavior: smooth;
+  font-family: "Inter", sans-serif;
+}
+
+/* ======== HERO ======== */
+.hero {
+  background-image: linear-gradient(120deg, rgba(59,165,92,0.06), rgba(37,99,235,0.04)),
+                    url("../assets/iglesia.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 4.5rem 0;
+}
+
+/* ======== BOTONES ======== */
+.btn-main {
+  background: linear-gradient(90deg, var(--verde), var(--azul));
+  border: none;
+  color: white !important;
+  transition: 0.3s;
+}
+
+.btn-main:hover {
+  opacity: 0.9;
+}
+
+.btn-outline-main {
+  border-color: var(--azul);
+  color: var(--azul);
+  transition: 0.3s;
+}
+
+.btn-outline-main:hover {
+  background: var(--azul);
+  color: white;
+}
+
+/* ======== COMPONENTES ======== */
+.card-cta {
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+  transition: all 0.3s;
+}
+.card-cta:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--azul);
+}
+
+.section-title {
+  position: relative;
+}
+
+.section-sub {
+  color: #6b7280;
+}
+
+/* ======== FOOTER ======== */
+footer {
+  background: #f1f5f9;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+footer a {
+  transition: all 0.3s ease;
+}
+
+/* Efecto de color en iconos del footer */
+footer .btn i {
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+footer .btn:hover i {
+  transform: scale(1.15);
+}
+
+footer .btn-outline-dark:hover i {
+  color: #E1306C; /* Instagram */
+}
+
+footer .btn-outline-primary:hover i {
+  color: #1877F2; /* Facebook */
+}
+
+footer .btn-success:hover i {
+  color: #25D366; /* WhatsApp */
+}
+
+/* ======== BOTONES FLOTANTES ======== */
+.whatsapp-btn {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 9999;
+  background: var(--verde);
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 0.3s;
+}
+
+.whatsapp-btn:hover {
+  background: #2f8f4c;
+}
+
+/* ======== BOTÓN VOLVER ARRIBA ======== */
+#backToTop {
+  position: fixed;
+  right: 1rem;
+  bottom: 5.5rem;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--verde), var(--azul));
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.4s ease, transform 0.3s ease, box-shadow 0.3s;
+  z-index: 999;
+  animation: pulse 2s infinite;
+}
+
+#backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#backToTop:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+  background: linear-gradient(135deg, var(--azul), var(--verde));
+}
+
+/* Animación del botón subir arriba */
+@keyframes pulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 576px) {
+  .hero {
+    padding: 3rem 0;
+  }
+}
