@@ -6,27 +6,209 @@
   <title>Comunidad Cristiana Menonita — Nueva Vida en Cristo Jesús</title>
   <meta name="description" content="Comunidad Cristiana Menonita Nueva Vida en Cristo Jesús — Sahagún, Córdoba. Adoración, enseñanza y servicio.">
 
+  <!-- 🔹 Favicon (logo del sitio) -->
+  <link rel="icon" type="image/png" href="assets/logos.jpg">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Iconos Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     html { scroll-behavior: smooth; }
-    .fade-in { opacity: 0; transform: translateY(25px); transition: all 0.8s ease-out; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    #versiculos { transition: opacity 0.8s ease; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    .fade-in { 
+      opacity: 0; 
+      transform: translateY(25px); 
+      transition: all 0.8s ease-out; 
+    }
+    .fade-in.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    #versiculos { 
+      transition: opacity 0.8s ease; 
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #059669, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .parallax-bg {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .pattern-bg {
+      background-color: #f0fdf4;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .card-shadow {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: box-shadow 0.3s ease;
+    }
+    .card-shadow:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #059669 0%, #2563eb 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #047857 0%, #1d4ed8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .btn-secondary {
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
+      z-index: 1;
+    }
+    .hero-image img {
+      position: relative;
+      z-index: 0;
+    }
+    .versiculo-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .versiculo-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(5, 150, 105, 0.05) 0%, rgba(255,255,255,0) 70%);
+      z-index: 0;
+    }
+    .versiculo-content {
+      position: relative;
+      z-index: 1;
+    }
+    .event-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, #059669, #2563eb);
+    }
+    .footer-wave {
+      position: relative;
+    }
+    .footer-wave::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23064166' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+      background-size: cover;
+    }
+    
+    /* --- ANIMACIÓN PARA EL TÍTULO DE BIENVENIDA --- */
+    .welcome-title {
+      display: inline-block;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    .welcome-title span {
+      display: inline-block;
+      opacity: 0;
+      animation: letterFadeIn 0.5s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes letterFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes gentle-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .welcome-title.animated span {
+       animation: letterFadeIn 0.5s ease-out forwards, gentle-float 4s ease-in-out infinite;
+    }
   </style>
 </head>
 
-<body class="bg-green-50 text-emerald-900 font-sans">
+<body class="bg-green-50 text-emerald-900 font-sans pattern-bg">
 
   <!-- HEADER -->
   <header class="sticky top-0 z-50 bg-emerald-800 text-white shadow-lg">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
       <a href="index.html" class="flex items-center gap-3">
-        <img src="assets/logos.jpg" alt="Logo Iglesia" class="w-14 h-14 rounded-full border-2 border-white">
+        <img src="assets/logos.jpg" alt="Logo Iglesia" class="w-14 h-14 rounded-full border-2 border-white floating">
         <div>
           <h1 class="text-base font-semibold">Comunidad Cristiana Menonita Nueva Vida en Cristo Jesús</h1>
           <p class="text-sm text-emerald-100">Sahagún — Córdoba</p>
@@ -38,171 +220,415 @@
       </button>
 
       <ul id="menu" class="hidden md:flex space-x-6 font-medium">
-        <li><a href="index.html" class="hover:text-yellow-300">Inicio</a></li>
-        <li><a href="quienes-somos.html" class="hover:text-yellow-300">Quiénes somos</a></li>
-        <li><a href="fotos.html" class="hover:text-yellow-300">Fotos</a></li>
-        <li><a href="contacto.html" class="hover:text-yellow-300">Contacto</a></li>
+        <li><a href="index.html" class="hover:text-yellow-300 transition-colors">Inicio</a></li>
+        <li><a href="quienes-somos.html" class="hover:text-yellow-300 transition-colors">Quiénes somos</a></li>
+        <li><a href="ministerios.html" class="hover:text-yellow-300 transition-colors">Ministerios</a></li>
+        <li><a href="fotos.html" class="hover:text-yellow-300 transition-colors">Fotos</a></li>
+        <li><a href="contacto.html" class="hover:text-yellow-300 transition-colors">Contacto</a></li>
       </ul>
     </nav>
 
     <!-- Menú móvil -->
     <div id="mobileMenu" class="hidden md:hidden bg-emerald-700 border-t border-emerald-600">
       <ul class="flex flex-col text-center py-3 space-y-2 text-white">
-        <li><a href="index.html" class="block py-1 hover:text-yellow-300">Inicio</a></li>
-        <li><a href="quienes-somos.html" class="block py-1 hover:text-yellow-300">Quiénes somos</a></li>
-        <li><a href="fotos.html" class="block py-1 hover:text-yellow-300">Fotos</a></li>
-        <li><a href="contacto.html" class="block py-1 hover:text-yellow-300">Contacto</a></li>
+        <li><a href="index.html" class="block py-1 hover:text-yellow-300 transition-colors">Inicio</a></li>
+        <li><a href="quienes-somos.html" class="block py-1 hover:text-yellow-300 transition-colors">Quiénes somos</a></li>
+        <li><a href="ministerios.html" class="block py-1 hover:text-yellow-300 transition-colors">Ministerios</a></li>
+        <li><a href="fotos.html" class="block py-1 hover:text-yellow-300 transition-colors">Fotos</a></li>
+        <li><a href="contacto.html" class="block py-1 hover:text-yellow-300 transition-colors">Contacto</a></li>
       </ul>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="fade-in bg-cover bg-center py-20 px-4" style="background-image: linear-gradient(120deg, rgba(59,165,92,0.15), rgba(37,99,235,0.10)), url('assets/hero-bg.jpg');">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
+  <section class="fade-in bg-cover bg-center py-20 px-4 relative" style="background-image: linear-gradient(120deg, rgba(59,165,92,0.15), rgba(37,99,235,0.10)), url('assets/hero-bg.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-green-50 opacity-70"></div>
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 relative z-10">
       <div class="md:w-1/2 text-center md:text-left">
-        <h2 class="text-4xl md:text-5xl font-bold mb-3 text-emerald-900">Bienvenidos<span class="text-green-700"> Dios te </span> Bendiga</h2>
-        <p class="text-lg mb-6 text-emerald-700">Explora y descubre nuestra comunidad .</p>
+        <!-- TÍTULO CON ANIMACIÓN -->
+        <h2 id="welcome-text" class="text-4xl md:text-5xl font-bold mb-3 text-emerald-900 font-serif welcome-title">
+          <!-- El JavaScript se encargará de dividir el texto en spans -->
+        </h2>
+        <p class="text-lg mb-6 text-emerald-700">Explora y descubre nuestra comunidad.</p>
         <div class="flex flex-wrap justify-center md:justify-start gap-3">
-          <a href="contacto.html" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition">Nos encontramos aquí</a>
-          <a href="quienes-somos.html" class="border border-green-700 text-green-700 px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white transition">Conócenos</a>
+          <a href="contacto.html" class="btn-primary text-white px-6 py-3 rounded-lg shadow-md">Nos encontramos aquí</a>
+          <a href="quienes-somos.html" class="btn-secondary border border-green-700 text-green-700 px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white">Conócenos</a>
         </div>
       </div>
-      <div class="md:w-1/2">
-        <img src="assets/iglesia.jpg" alt="Iglesia Nueva Vida" class="rounded-2xl shadow-2xl w-full max-h-[520px] object-cover border-4 border-emerald-100">
+      <div class="md:w-1/2 hero-image rounded-2xl overflow-hidden shadow-2xl">
+        <img src="assets/iglesia.jpg" alt="Iglesia Nueva Vida" class="w-full max-h-[520px] object-cover">
       </div>
     </div>
   </section>
 
   <!-- CARRUSEL BÍBLICO -->
-  <section class="fade-in bg-white py-16 text-center relative overflow-hidden shadow-inner">
-    <h3 class="text-3xl font-bold text-emerald-900 mb-8">Palabra que edifica</h3>
-    <div id="versiculos" class="transition-opacity duration-700">
-      <h4 class="text-2xl font-semibold text-green-700 mb-2">El Buen Pastor</h4>
-      <p class="text-xl italic text-gray-700">“El Señor es mi pastor; nada me faltará.”</p>
-      <span class="block mt-2 text-green-600 font-semibold">— Salmo 23:1</span>
-    </div>
-  </section>
-
-  <!-- EVENTOS -->
-  <section class="fade-in py-14 bg-green-100">
-    <div class="max-w-7xl mx-auto text-center mb-10">
-      <h3 class="text-3xl font-bold mb-3">Nuestros Eventos</h3>
-      <p class="text-emerald-700">Actividades abiertas a la comunidad — ¡te esperamos!</p>
-    </div>
-
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 px-4">
-      <div class="bg-white p-6 rounded-xl shadow hover:-translate-y-1 transition border-t-4 border-green-500">
-        <i class="fa fa-church text-green-600 text-3xl mb-3"></i>
-        <h6 class="font-semibold">Culto Dominical</h6>
-        <p class="text-gray-600 text-sm">Domingo • 9:00 AM / 11:00 AM</p>
-        <p class="text-sm mt-2">Predicación bíblica, adoración y comunión.</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow hover:-translate-y-1 transition border-t-4 border-blue-500">
-        <i class="fa fa-book-bible text-blue-600 text-3xl mb-3"></i>
-        <h6 class="font-semibold">Escuela Bíblica</h6>
-        <p class="text-gray-600 text-sm">Jueves • 6:00 PM</p>
-        <p class="text-sm mt-2">Discipulados para crecer en la fe.</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow hover:-translate-y-1 transition border-t-4 border-emerald-400">
-        <i class="fa fa-users text-green-700 text-3xl mb-3"></i>
-        <h6 class="font-semibold">Ministerio de Jóvenes y Niños</h6>
-        <p class="text-gray-600 text-sm">Sábado • 3:00 PM - 5:00 PM</p>
-        <p class="text-sm mt-2">Formación, recreación y convivencia.</p>
+  <section class="fade-in py-16 text-center relative overflow-hidden">
+    <div class="max-w-4xl mx-auto">
+      <h3 class="text-3xl font-bold text-emerald-900 mb-8 font-serif">Palabra que edifica</h3>
+      <div id="versiculos" class="transition-opacity duration-700 versiculo-card p-8">
+        <div class="versiculo-content">
+          <i class="fas fa-quote-left text-green-600 text-2xl mb-4 opacity-50"></i>
+          <h4 class="text-2xl font-semibold text-green-700 mb-2">El Buen Pastor</h4>
+          <p class="text-xl italic text-gray-700 mb-4">"El Señor es mi pastor; nada me faltará."</p>
+          <span class="block text-green-600 font-semibold">— Salmo 23:1</span>
+          <i class="fas fa-quote-right text-green-600 text-2xl mt-4 opacity-50"></i>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- TARJETA DE HORARIOS -->
+  <section class="fade-in content-card bg-emerald-100 rounded-2xl shadow-lg p-8 md:p-12">
+    <div class="text-center mb-8">
+      <h3 class="text-3xl font-bold text-emerald-800 mb-4">Horarios de Reuniones</h3>
+      <p class="text-emerald-700">Te invitamos a unirte a nuestras actividades semanales:</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow">
+        <div class="flex items-center mb-2">
+          <i class="fas fa-church text-emerald-600 mr-2"></i>
+          <h4 class="font-semibold text-emerald-800">Culto Dominical</h4>
+        </div>
+        <p class="text-emerald-700">Domingos: 9:00 AM</p>
+      </div>
+      
+      <div class="bg-white p-4 rounded-lg shadow">
+        <div class="flex items-center mb-2">
+          <i class="fas fa-book-bible text-emerald-600 mr-2"></i>
+          <h4 class="font-semibold text-emerald-800">Escuela Bíblica</h4>
+        </div>
+        <p class="text-emerald-700">Jueves 6:00 PM</p>
+      </div>
+      
+      <div class="bg-white p-4 rounded-lg shadow">
+        <div class="flex items-center mb-2">
+          <i class="fas fa-users text-emerald-600 mr-2"></i>
+          <h4 class="font-semibold text-emerald-800">Ministerio de Jóvenes</h4>
+        </div>
+        <p class="text-emerald-700">Sábado 3:00 PM</p>
+      </div>
+      
+      <div class="bg-white p-4 rounded-lg shadow">
+        <div class="flex items-center mb-2">
+          <i class="fas fa-hands-praying text-emerald-600 mr-2"></i>
+          <h4 class="font-semibold text-emerald-800">Reunión de Oración</h4>
+        </div>
+        <p class="text-emerald-700">Martes 6:30 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE TESTIMONIOS -->
+ <!--- <section class="fade-in py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold text-emerald-800 mb-10 text-center font-serif">Testimonios de Fe</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+          <div class="flex items-center mb-4">
+            <img src="assets/persona1.jpg" alt="Miembro" class="w-16 h-16 rounded-full object-cover mr-4">
+            <div>
+              <h4 class="font-semibold text-emerald-800">María González</h4>
+              <p class="text-sm text-gray-500">Miembro desde 2019</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic">"Esta iglesia ha transformado mi vida. He encontrado una familia espiritual que me apoya en mi caminar con Cristo."</p>
+        </div>
+      
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+          <div class="flex items-center mb-4">
+            <img src="assets/persona2.jpg" alt="Miembro" class="w-16 h-16 rounded-full object-cover mr-4">
+            <div>
+              <h4 class="font-semibold text-emerald-800">Carlos Rodríguez</h4>
+              <p class="text-sm text-gray-500">Miembro desde 2020</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic">"Las enseñanzas bíblicas me han ayudado a entender mejor la palabra de Dios y a aplicarla en mi vida diaria."</p>
+        </div>
+      
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+          <div class="flex items-center mb-4">
+            <img src="assets/persona3.jpg" alt="Miembro" class="w-16 h-16 rounded-full object-cover mr-4">
+            <div>
+              <h4 class="font-semibold text-emerald-800">Ana Martínez</h4>
+              <p class="text-sm text-gray-500">Miembro desde 2018</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic">"El ministerio de jóvenes me ha dado un espacio para crecer en mi fe y desarrollar amistades que durarán toda la vida."</p>
+        </div>
+      </div>
+    </div>
+  </section> ->
+
+  <!-- SECCIÓN DE PRÓXIMOS Actividades-->
+  <section class="fade-in py-16 px-4 bg-emerald-100">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold text-emerald-800 mb-10 text-center font-serif">Próximas Actividades</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg event-card">
+          <div class="h-48 bg-cover bg-center" style="background-image: url('assets/evento1.jpg')"></div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-emerald-800 text-lg">Actividad xxxxxxxxxxx</h4>
+              <span class="bg-emerald-700 text-white text-xs px-2 py-1 rounded-full">15 Enero</span>
+            </div>
+            <p class="text-gray-700 mb-4">Una breve descripcion de lo que sera la actividad .</p>
+            <a href="#" class="text-emerald-600 font-medium hover:text-emerald-700">Más información →</a>
+          </div>
+        </div>
+      
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg event-card">
+          <div class="h-48 bg-cover bg-center" style="background-image: url('assets/evento2.jpg')"></div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-emerald-800 text-lg">Actividad tal xxxxxxxx</h4>
+              <span class="bg-emerald-700 text-white text-xs px-2 py-1 rounded-full">5 Abr</span>
+            </div>
+            <p class="text-gray-700 mb-4">Una breve descripcion de lo que sera la actividad.</p>
+            <a href="#" class="text-emerald-600 font-medium hover:text-emerald-700">Más información →</a>
+          </div>
+        </div>
+      
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg event-card">
+          <div class="h-48 bg-cover bg-center" style="background-image: url('assets/evento3.jpg')"></div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-emerald-800 text-lg">actividad xxxxxxxxxxxxxxxx</h4>
+              <span class="bg-emerald-700 text-white text-xs px-2 py-1 rounded-full">19 Abr</span>
+            </div>
+            <p class="text-gray-700 mb-4">Una breve descripcion de lo que sera la actividad.</p>
+            <a href="#" class="text-emerald-600 font-medium hover:text-emerald-700">Más información →</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="fotos.html" class="btn-primary text-white px-6 py-3 rounded-lg shadow-md">Revisa Nuestras Actividades</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE MINISTERIOS -->
+  <section class="fade-in py-16 px-4 bg-emerald-50">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold text-emerald-800 mb-10 text-center font-serif">Nuestros Ministerios</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-child text-white text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-emerald-800 text-lg mb-2">Niños</h4>
+          <p class="text-gray-700 text-sm">Enseñanzas bíblicas adaptadas para los más pequeños de la casa.</p>
+          <a href="ministerios.html#ninos" class="text-emerald-600 font-medium hover:text-emerald-700 mt-2 inline-block">Saber más →</a>
+        </div>
+      
+        <div class="text-center">
+          <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-users text-white text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-emerald-800 text-lg mb-2">Jóvenes</h4>
+          <p class="text-gray-700 text-sm">Un espacio para crecer en Fe y desarrollar amistades.</p>
+          <a href="ministerios.html#jovenes" class="text-emerald-600 font-medium hover:text-emerald-700 mt-2 inline-block">Saber más →</a>
+        </div>
+      
+        <div class="text-center">
+          <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-hands-holding-heart text-white text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-emerald-800 text-lg mb-2">Mujeres</h4>
+          <p class="text-gray-700 text-sm">Comunidad de apoyo y crecimiento espiritual para mujeres.</p>
+          <a href="ministerios.html#mujeres" class="text-emerald-600 font-medium hover:text-emerald-700 mt-2 inline-block">Saber más →</a>
+        </div>
+      
+        <div class="text-center">
+          <div class="w-20 h-20 bg-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-hands-helping text-white text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-emerald-800 text-lg mb-2">Servicio</h4>
+          <p class="text-gray-700 text-sm">Oportunidades para servir a nuestra comunidad y mostrar el amor de Cristo.</p>
+          <a href="ministerios.html#servicio" class="text-emerald-600 font-medium hover:text-emerald-700 mt-2 inline-block">Saber más →</a>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="ministerios.html" class="btn-primary text-white px-6 py-3 rounded-lg shadow-md">Explorar todos los ministerios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE video de actividades youtube -->
+  <section class="fade-in py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold text-emerald-800 mb-10 text-center font-serif">Videos de Actividades</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover-lift">
+          <div class="relative">
+            <img src="assets/sermon1.jpg" alt="Actividad tal " class="w-full h-48 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <a href="https://www.youtube.com/watch?v=ejemplo1" target="_blank" class="bg-white text-emerald-700 p-3 rounded-full">
+                <i class="fab fa-youtube text-xl"></i>
+              </a>
+            </div>
+          </div>
+          <div class="p-6">
+            <h4 class="font-bold text-emerald-800 text-lg mb-2">nombre de la actividad</h4>
+            <p class="text-gray-700 text-sm mb-2">niños, niñas, jovenes adolecentes</p>
+            <p class="text-gray-600 text-sm">15 de marzo, 2024</p>
+          </div>
+        </div>
+      
+        
+      
+         <div class="bg-white rounded-xl overflow-hidden shadow-lg hover-lift">
+          <div class="relative">
+            <img src="assets/sermon1.jpg" alt="Actividad tal " class="w-full h-48 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <a href="https://www.youtube.com/watch?v=ejemplo1" target="_blank" class="bg-white text-emerald-700 p-3 rounded-full">
+                <i class="fab fa-youtube text-xl"></i>
+              </a>
+            </div>
+          </div>
+          <div class="p-6">
+            <h4 class="font-bold text-emerald-800 text-lg mb-2">nombre de la actividad</h4>
+            <p class="text-gray-700 text-sm mb-2">niños, niñas, jovenes adolecentes</p>
+            <p class="text-gray-600 text-sm">15 de marzo, 2024</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="https://www.youtube.com/@iglesianuevavida" target="_blank" class="btn-primary text-white px-6 py-3 rounded-lg shadow-md">
+          <i class="fab fa-youtube mr-2"></i> Ver más en YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE ESTADÍSTICAS si se quiere hacer algo asi mas adelnate--> 
+   <!--  <section class="fade-in py-16 px-4 bg-gradient-to-r from-emerald-700 to-blue-600 text-white">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-10 text-center font-serif">Nuestra Comunidad en Cifras</h3>
+      <div class="grid md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-5xl font-bold mb-2 counter" data-target="150">0</div>
+          <p class="text-lg">Miembros Activos</p>
+        </div>
+        <div> 
+          <div class="text-5xl font-bold mb-2 counter" data-target="25">0</div>
+          <p class="text-lg">Ministerios</p>
+        </div>
+        <div>
+          <div class="text-5xl font-bold mb-2 counter" data-target="12">0</div>
+          <p class="text-lg">Eventos al Año</p>
+        </div>
+        <div>
+          <div class="text-5xl font-bold mb-2 counter" data-target="8">0</div>
+          <p class="text-lg">Años de Servicio</p>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+
+
 
   <!-- CTA FINAL -->
-  <section class="fade-in py-16 text-center bg-emerald-50">
-    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 border border-emerald-100">
-      <h4 class="text-2xl font-semibold mb-2 text-emerald-900">Únete a nuestra familia</h4>
+  <section class="fade-in py-16 text-center bg-emerald-50 relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 to-blue-50 opacity-70"></div>
+    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 border border-emerald-100 relative z-10">
+      <h4 class="text-2xl font-semibold mb-2 text-emerald-900 font-serif">Únete a nuestra familia</h4>
       <p class="text-emerald-700 mb-5">Si quieres visitar o necesitas ayuda, comunícate con nosotros.</p>
-      <a href="https://wa.me/573016838490?text=¡Hola!%20Dios%20te%20bendiga.%20Me%20gustaría%20saber%20más%20sobre%20la%20iglesia%20Menonita%20Nueva%20Vida%20en%20Cristo%20Jesús." target="_blank" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition mr-2 shadow">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-      <a href="mailto:ccmnvidaencristojesus@gmail.com" class="border border-green-700 text-green-700 px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white transition shadow">
-        <i class="fa fa-envelope"></i> Enviar correo
-      </a>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href="https://wa.me/573016838490?text=¡Hola!%20Dios%20te%20bendiga.%20Me%20gustaría%20saber%20más%20sobre%20la%20iglesia%20Menonita%20Nueva%20Vida%20en%20Cristo%20Jesús." target="_blank" class="btn-primary text-white px-6 py-3 rounded-lg shadow-md">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+        <a href="mailto:ccmnvidaencristojesus@gmail.com" class="btn-secondary border border-green-700 text-green-700 px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white">
+          <i class="fa fa-envelope mr-2"></i> Enviar correo
+        </a>
+      </div>
     </div>
   </section>
 
-  <footer class="bg-emerald-800 text-emerald-100 py-8 text-center shadow-inner">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 px-4">
-    
-    <!-- Ubicación -->
-    <div class="flex flex-col items-center md:items-start text-center md:text-left">
-      <strong class="text-lg">Colombia</strong>
-      <small class="text-emerald-200">Sahagún — Córdoba</small>
+  <footer class="bg-emerald-800 text-emerald-100 py-8 text-center shadow-inner footer-wave">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 px-4">
+      <div class="flex flex-col items-center md:items-start text-center md:text-left">
+        <strong class="text-lg">Colombia</strong>
+        <small class="text-emerald-200">Sahagún — Córdoba</small>
+      </div>
+      <div class="flex gap-6 text-2xl justify-center">
+        <a href="https://instagram.com/iglesianuevavida" target="_blank" class="hover:text-pink-400 transition-colors transform hover:scale-110">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://facebook.com/iglesianuevavida" target="_blank" class="hover:text-blue-400 transition-colors transform hover:scale-110">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.youtube.com/@iglesianuevavida" target="_blank" class="hover:text-red-500 transition-colors transform hover:scale-110">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+      <div class="flex flex-col items-center md:items-end text-center md:text-right">
+        <small class="text-emerald-200 leading-tight">
+          © <span id="year"></span> Comunidad Cristiana Menonita <br>
+          Nueva Vida en Cristo Jesús.
+        </small>
+      </div>
     </div>
-
-    <!-- Redes sociales -->
-    <div class="flex gap-6 text-2xl justify-center">
-      <a href="https://instagram.com/iglesianuevavida" target="_blank" class="hover:text-pink-400 transition-colors">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://facebook.com/iglesianuevavida" target="_blank" class="hover:text-blue-400 transition-colors">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a href="https://www.youtube.com/@iglesianuevavida" target="_blank" class="hover:text-red-500 transition-colors">
-        <i class="fab fa-youtube"></i>
-      </a>
-    </div>
-
-    <!-- Derechos -->
-    <div class="flex flex-col items-center md:items-end text-center md:text-right">
-      <small class="text-emerald-200 leading-tight">
-        © <span id="year"></span> Comunidad Cristiana Menonita <br>
-        Nueva Vida en Cristo Jesús. 
-      </small>
-    </div>
-
-  </div>
-</footer>
-
-<script>
-  // Año automático
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-
-<script>
-  // Año automático
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-
-<script>
-  // Año automático
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
+  </footer>
 
   <!-- BOTÓN SUBIR -->
-  <button id="backToTop" class="hidden fixed bottom-10 right-6 bg-gradient-to-r from-green-600 to-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition flex items-center justify-center">
+  <button id="backToTop" class="hidden fixed bottom-10 right-6 bg-gradient-to-r from-green-600 to-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition flex items-center justify-center transform hover:scale-110">
     <i class="fa-solid fa-arrow-up text-xl"></i>
   </button>
 
-  <!-- SCRIPT -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // --- Funcionalidad existente ---
     const back = document.getElementById('backToTop');
     window.addEventListener('scroll', () => back.classList.toggle('hidden', window.scrollY < 300));
     back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     const elements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.2 });
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 50);
+        }
+      });
+    }, { threshold: 0.1 });
     elements.forEach(el => observer.observe(el));
 
     document.getElementById('menuBtn').addEventListener('click', () => {
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
 
-    // 🔹 Carrusel de 15 versículos con título
+    // --- SCRIPT PARA LA ANIMACIÓN DEL TÍTULO ---
+    document.addEventListener('DOMContentLoaded', function() {
+      const welcomeTextElement = document.getElementById('welcome-text');
+      const text = 'Bienvenidos <span class="text-green-700"> Dios te </span> Bendiga';
+      
+      welcomeTextElement.innerHTML = text;
+      
+      const nodes = welcomeTextElement.childNodes;
+      let delay = 0;
+
+      nodes.forEach((node, index) => {
+        if (node.nodeType === 3) { // Es un nodo de texto
+          const textContent = node.textContent;
+          const wrappedText = textContent.split('').map(char => `<span style="animation-delay: ${delay}s">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+          node.outerHTML = wrappedText;
+          delay += 0.05;
+        } else if (node.nodeType === 1 && node.tagName === 'SPAN') { // Es el span con "Dios te"
+          const innerText = node.innerText;
+          const wrappedText = innerText.split('').map(char => `<span style="animation-delay: ${delay}s" class="${node.className}">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+          node.outerHTML = wrappedText;
+          delay += 0.05;
+        }
+      });
+      
+      setTimeout(() => {
+        welcomeTextElement.classList.add('animated');
+      }, 100);
+    });
+
+    // --- Carrusel de versículos ---
     const versos = [
       { titulo: "El Buen Pastor", texto: "El Señor es mi pastor; nada me faltará.", cita: "Salmo 23:1" },
       { titulo: "Fuerza en Cristo", texto: "Todo lo puedo en Cristo que me fortalece.", cita: "Filipenses 4:13" },
@@ -228,14 +654,54 @@
       div.style.opacity = 0;
       setTimeout(() => {
         div.innerHTML = `
-          <h4 class='text-2xl font-semibold text-green-700 mb-2'>${versos[index].titulo}</h4>
-          <p class='text-xl italic text-gray-700'>“${versos[index].texto}”</p>
-          <span class='block mt-2 text-green-600 font-semibold'>— ${versos[index].cita}</span>
+          <div class="versiculo-content">
+            <i class="fas fa-quote-left text-green-600 text-2xl mb-4 opacity-50"></i>
+            <h4 class='text-2xl font-semibold text-green-700 mb-2'>${versos[index].titulo}</h4>
+            <p class='text-xl italic text-gray-700 mb-4'>"${versos[index].texto}"</p>
+            <span class='block text-green-600 font-semibold'>— ${versos[index].cita}</span>
+            <i class="fas fa-quote-right text-green-600 text-2xl mt-4 opacity-50"></i>
+          </div>
         `;
         div.style.opacity = 1;
       }, 700);
     }, 5000);
+
+    // --- Contador animado ---
+    document.addEventListener('DOMContentLoaded', function() {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200;
+    
+      counters.forEach(counter => {
+        const animate = () => {
+          const value = +counter.getAttribute('data-target');
+          const data = +counter.innerText;
+          const time = value / speed;
+          
+          if (data < value) {
+            counter.innerText = Math.ceil(data + time);
+            setTimeout(animate, 1);
+          } else {
+            counter.innerText = value;
+          }
+        }
+        
+        const observerOptions = {
+          threshold: 0.5
+        };
+        
+        const observerCallback = (entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animate();
+              observer.unobserve(entry.target);
+            }
+          });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        observer.observe(counter);
+      });
+    });
   </script>
 </body>
 </html>
-

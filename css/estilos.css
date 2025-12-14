@@ -1,224 +1,53 @@
+/* estilos.css - complementa Tailwind con pequeñas utilidades y reduce CLS */
 :root {
-  --verde: #3ba55c;
-  --azul: #2563eb;
-  --dorado: #facc15;
-  --fondo: #f9fafb;
-  --texto: #1f2937;
+  --brand-emerald: #046c4b;
+  --text: #064e3b;
+  --muted: #6b7280;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-/* ======== BASE ======== */
-body {
-  background: var(--fondo);
-  color: var(--texto);
-  scroll-behavior: smooth;
-  font-family: "Inter", sans-serif;
-  margin: 0;
-  padding: 0;
+/* reduce motion if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, * {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
-/* ======== HERO ======== */
-.hero {
-  background-image: linear-gradient(120deg, rgba(59,165,92,0.06), rgba(37,99,235,0.04)),
-                    url("../assets/iglesia.jpg");
-  background-size: cover;
-  background-position: center;
-  padding: 5rem 0;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-/* ==== HERO CONTACTO (ESPECIAL) ==== */
-.hero-contacto {
-  background: linear-gradient(135deg, #14532d, #047857);
-  color: white;
-  padding: 6.5rem 1rem 4rem; /* 🔹 espacio extra arriba para móviles */
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-contacto h2 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.hero-contacto p {
-  font-size: 1.1rem;
-  color: #f0fdf4;
-}
-
-/* ======== BOTONES ======== */
-.btn-main {
-  background: linear-gradient(90deg, var(--verde), var(--azul));
-  border: none;
-  color: white !important;
-  transition: 0.3s;
-}
-
-.btn-main:hover {
-  opacity: 0.9;
-}
-
-.btn-outline-main {
-  border-color: var(--azul);
-  color: var(--azul);
-  transition: 0.3s;
-}
-
-.btn-outline-main:hover {
-  background: var(--azul);
-  color: white;
-}
-
-/* ======== COMPONENTES ======== */
-.card-cta {
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
-  transition: all 0.3s;
-}
-.card-cta:hover {
-  transform: translateY(-5px);
-}
-
-.feature-icon {
-  width: 56px;
-  height: 56px;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
-  background: rgba(37, 99, 235, 0.08);
-  color: var(--azul);
-}
-
-.section-title {
-  position: relative;
-}
-
-.section-sub {
-  color: #6b7280;
-}
-
-/* ======== FOOTER ======== */
-footer {
-  background: #f1f5f9;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-footer a {
-  transition: all 0.3s ease;
-}
-
-/* Efecto de color en iconos del footer */
-footer .btn i {
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-footer .btn:hover i {
-  transform: scale(1.15);
-}
-
-footer .btn-outline-dark:hover i {
-  color: #E1306C; /* Instagram */
-}
-
-footer .btn-outline-primary:hover i {
-  color: #1877F2; /* Facebook */
-}
-
-footer .btn-success:hover i {
-  color: #25D366; /* WhatsApp */
-}
-
-/* ======== BOTONES FLOTANTES ======== */
-.whatsapp-btn {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 9999;
-  background: var(--verde);
-  color: #fff;
-  padding: 0.8rem 1rem;
-  border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: 0.3s;
-}
-
-.whatsapp-btn:hover {
-  background: #2f8f4c;
-}
-
-/* ======== BOTÓN VOLVER ARRIBA ======== */
-#backToTop {
-  position: fixed;
-  right: 1rem;
-  bottom: 5.5rem;
-  width: 55px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--verde), var(--azul));
-  color: white;
-  font-size: 22px;
-  cursor: pointer;
+/* fade-in default */
+.fade-in {
   opacity: 0;
-  pointer-events: none;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  transition: opacity 0.4s ease, transform 0.3s ease, box-shadow 0.3s;
-  z-index: 999;
-  animation: pulse 2s infinite;
+  transform: translateY(25px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-
-#backToTop.show {
+.fade-in.visible {
   opacity: 1;
-  pointer-events: auto;
   transform: translateY(0);
 }
 
-#backToTop:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-  background: linear-gradient(135deg, var(--azul), var(--verde));
+/* small helpers */
+.rounded-2xl {
+  border-radius: 1rem;
 }
 
-/* Animación del botón subir arriba */
-@keyframes pulse {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+/* shadow-uniform */
+.shadow-lg {
+  box-shadow: 0 10px 25px rgba(2,6,23,0.08);
 }
 
-/* ======== NAVBAR MOBILE FIX ======== */
-@media (max-width: 768px) {
-  .navbar-collapse {
-    background-color: white !important;
-    padding: 1rem;
-    border-radius: 0.5rem;
-  }
-  .hero-contacto {
-    padding-top: 7rem; /* 🔹 evita que el título quede bajo el navbar */
-  }
-  .hero-contacto h2 {
-    font-size: 1.8rem !important;
-  }
-  .hero-contacto p {
-    font-size: 1rem !important;
-  }
+/* make images behave */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-/* ======== HERO GENERAL MOBILE ======== */
-@media (max-width: 576px) {
-  .hero {
-    padding: 3.5rem 0;
-  }
+/* prevent layout shifts for background sections: recommend including width/height for hero images */
+.hero-placeholder {
+  min-height: 320px;
+}
 
-  
+/* minor responsive adjustments */
+@media (min-width: 768px) {
+  .hero-placeholder { min-height: 420px; }
 }

@@ -3,8 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="assets/logos.jpg">
   <title>Contacto — Iglesia Menonita Nueva Vida en Cristo Jesús</title>
   <meta name="description" content="Contáctanos para recibir oración, información o acompañamiento espiritual.">
+  <meta name="keywords" content="iglesia menonita, contacto, oración, acompañamiento espiritual, Sahagún Córdoba">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.iglesianuevavida.com/contacto.html">
+  <meta property="og:title" content="Contacto — Iglesia Menonita Nueva Vida en Cristo Jesús">
+  <meta property="og:description" content="Contáctanos para recibir oración, información o acompañamiento espiritual.">
+  <meta property="og:image" content="https://www.iglesianuevavida.com/assets/hero-contacto.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.iglesianuevavida.com/contacto.html">
+  <meta property="twitter:title" content="Contacto — Iglesia Menonita Nueva Vida en Cristo Jesús">
+  <meta property="twitter:description" content="Contáctanos para recibir oración, información o acompañamiento espiritual.">
+  <meta property="twitter:image" content="https://www.iglesianuevavida.com/assets/hero-contacto.jpg">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -12,175 +29,352 @@
     html { scroll-behavior: smooth; }
     .fade-in { opacity: 0; transform: translateY(25px); transition: all 0.8s ease-out; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+    
+    /* Estilos para tarjetas similares a "Quiénes somos" */
+    .content-card {
+      transition: all 0.3s ease;
+    }
+    
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Mejoras de accesibilidad */
+    a:focus, button:focus, input:focus, textarea:focus, select:focus {
+      outline: 2px solid #10b981;
+      outline-offset: 2px;
+    }
+    
+    /* Animación para el botón de enviar */
+    .submit-btn {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .submit-btn:hover::after {
+      left: 100%;
+    }
+    
+    /* Animación para el estado del formulario */
+    .status-message {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Estilo para el mapa */
+    .map-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.75rem;
+    }
+    
+    .map-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(to top, rgba(255,255,255,0.9), transparent);
+      pointer-events: none;
+    }
+    
+    /* Patrón de fondo sutil */
+    .pattern-bg {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Efecto de escritura para el título principal */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+    
+    .typing-effect {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid white;
+      animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+    }
   </style>
 </head>
 
-<body class="bg-gradient-to-b from-emerald-50 via-white to-green-50 text-emerald-900 font-sans">
+<body class="bg-gradient-to-b from-emerald-50 via-white to-green-50 text-emerald-900 font-sans pattern-bg">
 
-  <!-- HEADER -->
+  <!-- HEADER (Manteniendo la consistencia) -->
   <header class="sticky top-0 z-50 bg-emerald-800 text-white shadow-lg">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-      <a href="index.html" class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3" aria-label="Inicio">
         <img src="assets/logos.jpg" alt="Logo Iglesia" class="w-14 h-14 rounded-full border-2 border-white">
         <div>
           <h1 class="text-base font-semibold">Nueva Vida en Cristo Jesús</h1>
           <p class="text-sm text-emerald-100">Sahagún — Córdoba</p>
         </div>
       </a>
-      <button id="menuBtn" aria-label="Abrir menú" class="md:hidden text-2xl"><i class="fa fa-bars"></i></button>
+      <button id="menuBtn" aria-label="Abrir menú" class="md:hidden text-2xl">
+        <i class="fa fa-bars"></i>
+      </button>
       <ul id="menu" class="hidden md:flex space-x-6 font-medium">
-        <li><a href="index.html" class="hover:text-yellow-300">Inicio</a></li>
-        <li><a href="quienes-somos.html" class="hover:text-yellow-300">Quiénes somos</a></li>
-        <li><a href="fotos.html" class="hover:text-yellow-300">Fotos</a></li>
-        <li><a href="contacto.html" class="text-yellow-300 font-semibold">Contacto</a></li>
+        <li><a href="index.html" class="hover:text-yellow-300 transition-colors">Inicio</a></li>
+        <li><a href="quienes-somos.html" class="hover:text-yellow-300 transition-colors">Quiénes somos</a></li>
+        <li><a href="ministerios.html" class="hover:text-yellow-300 transition-colors">Ministerios</a></li>
+        <li><a href="fotos.html" class="hover:text-yellow-300 transition-colors">Fotos</a></li>
+        <li><a href="contacto.html" class="text-yellow-300 font-semibold transition-colors">Contacto</a></li>
       </ul>
     </nav>
-
     <!-- Menú móvil -->
     <div id="mobileMenu" class="hidden md:hidden bg-emerald-700 border-t border-emerald-600">
       <ul class="flex flex-col text-center py-3 space-y-2 text-white">
-        <li><a href="index.html" class="block py-1 hover:text-yellow-300">Inicio</a></li>
-        <li><a href="quienes-somos.html" class="block py-1 hover:text-yellow-300">Quiénes somos</a></li>
-        <li><a href="fotos.html" class="block py-1 hover:text-yellow-300">Fotos</a></li>
-        <li><a href="contacto.html" class="block py-1 text-yellow-300 font-semibold">Contacto</a></li>
+        <li><a href="index.html" class="block py-1 hover:text-yellow-300 transition-colors">Inicio</a></li>
+        <li><a href="quienes-somos.html" class="block py-1 hover:text-yellow-300 transition-colors">Quiénes somos</a></li>
+       <li><a href="ministerios.html" class="hover:text-yellow-300 transition-colors">Ministerios</a></li>
+        <li><a href="fotos.html" class="block py-1 hover:text-yellow-300 transition-colors">Fotos</a></li>
+        <li><a href="contacto.html" class="block py-1 text-yellow-300 font-semibold transition-colors">Contacto</a></li>
       </ul>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="fade-in relative bg-cover bg-center py-24 px-4" style="background-image: url('assets/hero-contacto.jpg');">
+  <section class="fade-in relative bg-cover bg-center py-24 px-4" style="background-image: linear-gradient(120deg, rgba(59,165,92,0.15), rgba(37,99,235,0.10)), url('assets/hero-contacto.jpg');">
     <div class="absolute inset-0 bg-emerald-900/60"></div>
     <div class="relative max-w-4xl mx-auto text-center text-white">
-      <h2 class="text-5xl md:text-6xl font-extrabold mb-4">Contáctanos</h2>
-      <p class="text-lg md:text-xl opacity-90">Estamos aquí para escucharte, orar contigo y servirte con amor .</p>
+      <h2 class="text-5xl md:text-6xl font-extrabold mb-4 typing-effect">Contáctanos</h2>
+      <p class="text-lg md:text-xl opacity-90">Estamos aquí para escucharte, orar contigo y servirte con amor.</p>
     </div>
   </section>
 
-  <!-- FORMULARIO -->
-  <section class="fade-in max-w-6xl mx-auto px-6 py-16">
-    <div class="grid md:grid-cols-2 gap-10 items-start">
+  <!-- CONTENIDO PRINCIPAL (Estructura similar a "Quiénes somos") -->
+  <main class="max-w-6xl mx-auto px-6 py-16 space-y-16">
+
+    <!-- TARJETA DE FORMULARIO -->
+    <section class="fade-in content-card bg-white rounded-2xl shadow-lg p-8 md:p-12">
+      <div class="text-center mb-8">
+        <h3 class="text-3xl font-bold text-emerald-800 mb-4">Envíanos un mensaje</h3>
+        <p class="text-emerald-700">Nos encantaría saber de ti. Llena el formulario y te responderemos a la brevedad.</p>
+      </div>
       
-      <!-- Formulario -->
-      <div class="bg-white rounded-2xl shadow-lg p-8 border border-emerald-100">
-        <h3 class="text-2xl font-bold text-emerald-800 mb-6 text-center">Envíanos un mensaje</h3>
-        
-        <form id="contactForm" class="space-y-4">
+      <form id="contactForm" class="space-y-6" novalidate>
+        <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <label class="block text-sm font-semibold mb-1">Tu nombre</label>
-            <input type="text" name="nombre" required
-              class="w-full border border-emerald-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-emerald-600 outline-none">
+            <label for="nombre" class="block text-sm font-semibold mb-2 text-emerald-700">Tu nombre</label>
+            <input type="text" id="nombre" name="nombre" required
+              class="w-full border border-emerald-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-600 outline-none transition-colors"
+              placeholder="Ingresa tu nombre completo">
+            <span class="text-red-500 text-sm hidden" id="nombre-error">Por favor, ingresa tu nombre</span>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">Tu correo electrónico</label>
-            <input type="email" name="email" required
-              class="w-full border border-emerald-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-emerald-600 outline-none">
+            <label for="email" class="block text-sm font-semibold mb-2 text-emerald-700">Tu correo electrónico</label>
+            <input type="email" id="email" name="email" required
+              class="w-full border border-emerald-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-600 outline-none transition-colors"
+              placeholder="correo@ejemplo.com">
+            <span class="text-red-500 text-sm hidden" id="email-error">Por favor, ingresa un correo válido</span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="telefono" class="block text-sm font-semibold mb-2 text-emerald-700">Tu teléfono (opcional)</label>
+            <input type="tel" id="telefono" name="telefono"
+              class="w-full border border-emerald-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-600 outline-none transition-colors"
+              placeholder="+57 123 456 7890">
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">Mensaje</label>
-            <textarea name="mensaje" rows="4" required
-              class="w-full border border-emerald-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-emerald-600 outline-none"></textarea>
+            <label for="motivo" class="block text-sm font-semibold mb-2 text-emerald-700">Motivo de contacto</label>
+            <select id="motivo" name="motivo" required
+              class="w-full border border-emerald-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-600 outline-none transition-colors">
+              <option value="">Selecciona una opción</option>
+              <option value="oracion">Solicitud de oración</option>
+              <option value="informacion">Información sobre la iglesia</option>
+              <option value="visita">Planificar una visita</option>
+              <option value="voluntariado">Interés en voluntariado</option>
+              <option value="otro">Otro</option>
+            </select>
+            <span class="text-red-500 text-sm hidden" id="motivo-error">Por favor, selecciona un motivo</span>
           </div>
+        </div>
 
-          <button type="submit" class="w-full bg-emerald-700 text-white py-3 rounded-lg font-semibold hover:bg-emerald-800 transition">
+        <div>
+          <label for="mensaje" class="block text-sm font-semibold mb-2 text-emerald-700">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required
+            class="w-full border border-emerald-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-600 outline-none transition-colors"
+            placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
+          <span class="text-red-500 text-sm hidden" id="mensaje-error">Por favor, ingresa tu mensaje</span>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="submit-btn bg-emerald-700 text-white py-3 px-8 rounded-lg font-semibold hover:bg-emerald-800 transition-all duration-300 shadow-md">
             <i class="fa fa-paper-plane mr-2"></i> Enviar mensaje
           </button>
+        </div>
 
-          <p id="status" class="text-center mt-4 text-emerald-700 font-medium"></p>
-        </form>
+        <div id="status" class="text-center mt-6 font-medium status-message"></div>
+      </form>
 
-        <div class="mt-6 text-center">
-          <a 
-  href="https://wa.me/573016838490?text=¡Hola%20bendiciones!%20🙌%20Quisiera%20ponerme%20en%20contacto%20con%20la%20Iglesia%20Menonita%20Nueva%20Vida%20en%20Cristo%20Jesús." 
-  target="_blank"
-  class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg shadow transition">
-  <i class="fab fa-whatsapp text-lg"></i> Enviar mensaje por WhatsApp
-</a>
+      <div class="mt-8 text-center">
+        <a 
+          href="https://wa.me/573016838490?text=¡Hola%20bendiciones!%20Quisiera%20ponerme%20en%20contacto%20con%20la%20Iglesia%20Menonita%20Nueva%20Vida%20en%20Cristo%20Jesús." 
+          target="_blank"
+          class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg shadow transition-all duration-300"
+          aria-label="Enviar mensaje por WhatsApp">
+          <i class="fab fa-whatsapp text-lg"></i> Enviar mensaje por WhatsApp
+        </a>
+      </div>
+    </section>
 
+    <!-- TARJETA DE UBICACIÓN -->
+    <section class="fade-in content-card bg-emerald-50 rounded-2xl shadow-lg p-8 md:p-12">
+      <div class="text-center mb-8">
+        <h3 class="text-3xl font-bold text-emerald-800 mb-4">Nuestra Ubicación</h3>
+        <p class="text-emerald-700">Encuéntranos en el corazón de Sahagún, Córdoba.</p>
+      </div>
+      
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!4v1761523872455!6m8!1m7!1sv52VO2HBTl5q-18-GO076w!2m2!1d8.953172548402199!2d-75.45291798315328!3f86.28358952765873!4f-5.617179216898322!5f0.7820865974627469"
+          width="100%"
+          height="350"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="w-full rounded-xl shadow-md border-none"
+          title="Mapa de la ubicación de la Iglesia Menonita Nueva Vida en Cristo Jesús">
+        </iframe>
+      </div>
+      
+      <div class="mt-6 text-center">
+        <button id="directionsBtn" class="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors">
+          <i class="fas fa-directions mr-2"></i> Cómo llegar
+        </button>
+      </div>
+    </section>
+
+    <!-- TARJETA DE INFORMACIÓN DE CONTACTO -->
+    <section class="fade-in content-card bg-white rounded-2xl shadow-lg p-8 md:p-12">
+      <div class="text-center mb-8">
+        <h3 class="text-3xl font-bold text-emerald-800 mb-4">Información de Contacto</h3>
+        <p class="text-emerald-700">Puedes comunicarte con nosotros de las siguientes maneras:</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <div class="flex items-start">
+            <i class="fas fa-map-marker-alt text-emerald-600 mr-3 mt-1 w-5"></i>
+            <div>
+              <p class="font-semibold text-emerald-800">Dirección</p>
+              <p class="text-emerald-700">Sahagún, Córdoba — Colombia</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <i class="fas fa-phone-alt text-emerald-600 mr-3 mt-1 w-5"></i>
+            <div>
+              <p class="font-semibold text-emerald-800">Teléfono</p>
+              <a href="tel:+573016838490" class="text-emerald-700 hover:text-emerald-900 transition-colors">+57 301 683 8490</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-start">
+            <i class="fas fa-envelope text-emerald-600 mr-3 mt-1 w-5"></i>
+            <div>
+              <p class="font-semibold text-emerald-800">Correo electrónico</p>
+              <a href="mailto:ccmnvidaencristojesus@gmail.com" 
+                 class="text-emerald-700 hover:text-emerald-900 underline transition-colors">
+                ccmnvidaencristojesus@gmail.com
+              </a>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <i class="fas fa-clock text-emerald-600 mr-3 mt-1 w-5"></i>
+            <div>
+              <p class="font-semibold text-emerald-800">Horario de oficina</p>
+              <p class="text-emerald-700">Lunes a Viernes: 9:00 AM - 5:00 PM</p>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Información -->
-      <div class="space-y-6">
-        <div class="bg-emerald-50 p-6 rounded-xl shadow">
-          <h4 class="text-2xl font-bold text-emerald-800 mb-4 text-center">Nuestra Ubicación</h4>
-          <iframe
-  src="https://www.google.com/maps/embed?pb=!4v1761523872455!6m8!1m7!1sv52VO2HBTl5q-18-GO076w!2m2!1d8.953172548402199!2d-75.45291798315328!3f86.28358952765873!4f-5.617179216898322!5f0.7820865974627469"
-  width="100%"
-  height="350"
-  style="border:0;"
-  allowfullscreen=""
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade"
-  class="w-full rounded-xl shadow-md border-none">
-</iframe>
+   
 
-        </div>
+  </main>
 
-        <div class="bg-white p-6 rounded-xl shadow-md text-center">
-          <h4 class="text-xl font-semibold text-emerald-800 mb-4">Información de Contacto</h4>
-          <p class="mb-2"><i class="fas fa-map-marker-alt text-emerald-600 mr-2"></i> Sahagún, Córdoba — Colombia</p>
-          <p class="mb-2"><i class="fas fa-phone-alt text-emerald-600 mr-2"></i> +57 301 683 8490</p>
-         <p>
-  <i class="fas fa-envelope text-emerald-600 mr-2"></i>
-  <a href="mailto:ccmnvidaencristojesus@gmail.com" 
-     class="hover:text-emerald-700 underline">
-     ccmnvidaencristojesus@gmail.com
-  </a>
-</p>
 
-        </div>
+
+  <!-- FOOTER (Manteniendo la consistencia) -->
+  <footer class="bg-emerald-800 text-emerald-100 py-8 text-center shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 px-4">
+      
+      <!-- Ubicación -->
+      <div class="flex flex-col items-center md:items-start text-center md:text-left">
+        <strong class="text-lg">Colombia</strong>
+        <small class="text-emerald-200">Sahagún — Córdoba</small>
       </div>
-    </div>
-  </section>
 
- <footer class="bg-emerald-800 text-emerald-100 py-8 text-center shadow-inner">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 px-4">
-    
-    <!-- Ubicación -->
-    <div class="flex flex-col items-center md:items-start text-center md:text-left">
-      <strong class="text-lg">Colombia</strong>
-      <small class="text-emerald-200">Sahagún — Córdoba</small>
-    </div>
+      <!-- Redes sociales -->
+      <div class="flex gap-6 text-2xl justify-center">
+        <a href="https://instagram.com/iglesianuevavida" target="_blank" class="hover:text-pink-400 transition-colors" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://facebook.com/iglesianuevavida" target="_blank" class="hover:text-blue-400 transition-colors" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.youtube.com/@iglesianuevavida" target="_blank" class="hover:text-red-500 transition-colors" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
 
-    <!-- Redes sociales -->
-    <div class="flex gap-6 text-2xl justify-center">
-      <a href="https://instagram.com/iglesianuevavida" target="_blank" class="hover:text-pink-400 transition-colors">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://facebook.com/iglesianuevavida" target="_blank" class="hover:text-blue-400 transition-colors">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a href="https://www.youtube.com/@iglesianuevavida" target="_blank" class="hover:text-red-500 transition-colors">
-        <i class="fab fa-youtube"></i>
-      </a>
-    </div>
+      <!-- Derechos -->
+      <div class="flex flex-col items-center md:items-end text-center md:text-right">
+        <small class="text-emerald-200 leading-tight">
+          © <span id="year"></span> Comunidad Cristiana Menonita <br>
+          Nueva Vida en Cristo Jesús. 
+        </small>
+      </div>
 
-    <!-- Derechos -->
-    <div class="flex flex-col items-center md:items-end text-center md:text-right">
-      <small class="text-emerald-200 leading-tight">
-        © <span id="year"></span> Comunidad Cristiana Menonita <br>
-        Nueva Vida en Cristo Jesús. 
-      </small>
     </div>
-
-  </div>
-</footer>
+  </footer>
 
   <!-- BOTÓN SUBIR -->
-  <button id="backToTop" class="hidden fixed bottom-10 right-6 bg-gradient-to-r from-green-600 to-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition flex items-center justify-center">
+  <button id="backToTop" class="hidden fixed bottom-10 right-6 bg-gradient-to-r from-green-600 to-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition flex items-center justify-center" aria-label="Volver arriba">
     <i class="fa-solid fa-arrow-up text-xl"></i>
   </button>
 
-  <!-- JS -->
+  <!-- SCRIPT -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Botón de subir
     const back = document.getElementById('backToTop');
     window.addEventListener('scroll', () => back.classList.toggle('hidden', window.scrollY < 300));
     back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+    // Animación fade-in
     const elements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
       entries.forEach((entry, i) => {
@@ -189,34 +383,92 @@
     }, { threshold: 0.2 });
     elements.forEach(el => observer.observe(el));
 
+    // Menú móvil
     document.getElementById('menuBtn').addEventListener('click', () => {
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
 
-    // ✅ Envío del formulario con JSON (sin error 405)
+    // Botón de direcciones
+    document.getElementById('directionsBtn').addEventListener('click', () => {
+      window.open('https://www.google.com/maps/dir/?api=1&destination=Iglesia+Menonita+Nueva+Vida+en+Cristo+Jesús,Sahagún,Córdoba,Colombia', '_blank');
+    });
+
+    // Validación y envío del formulario
     document.getElementById("contactForm").addEventListener("submit", async function(e) {
       e.preventDefault();
+      
+      // Ocultar mensajes de error anteriores
+      document.querySelectorAll('.text-red-500').forEach(el => el.classList.add('hidden'));
+      
+      // Validar campos
+      let isValid = true;
+      const nombre = document.getElementById('nombre');
+      const email = document.getElementById('email');
+      const motivo = document.getElementById('motivo');
+      const mensaje = document.getElementById('mensaje');
+      
+      if (!nombre.value.trim()) {
+        document.getElementById('nombre-error').classList.remove('hidden');
+        isValid = false;
+      }
+      
+      if (!email.value.trim() || !email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        document.getElementById('email-error').classList.remove('hidden');
+        isValid = false;
+      }
+      
+      if (!motivo.value) {
+        document.getElementById('motivo-error').classList.remove('hidden');
+        isValid = false;
+      }
+      
+      if (!mensaje.value.trim()) {
+        document.getElementById('mensaje-error').classList.remove('hidden');
+        isValid = false;
+      }
+      
+      if (!isValid) return;
+      
       const form = e.target;
       const data = {
         nombre: form.nombre.value,
         email: form.email.value,
+        telefono: form.telefono.value,
+        motivo: form.motivo.value,
         mensaje: form.mensaje.value
       };
+      
       const status = document.getElementById("status");
+      status.textContent = "Enviando mensaje...";
+      status.className = "text-center mt-6 text-blue-600 font-medium status-message";
+      
       try {
         const res = await fetch("https://formspree.io/f/xvgvgbjp", {
           method: "POST",
           headers: { "Accept": "application/json", "Content-Type": "application/json" },
           body: JSON.stringify(data)
         });
+        
         if (res.ok) {
-          status.textContent = "✅ ¡Mensaje enviado con éxito!";
+          status.textContent = "✅ ¡Mensaje enviado con éxito! Te contactaremos pronto.";
+          status.className = "text-center mt-6 text-green-600 font-medium status-message";
           form.reset();
+          
+          // Enviar evento a Google Analytics (si está disponible)
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_submit', {
+              'event_category': 'contact',
+              'event_label': 'contact_form'
+            });
+          }
         } else {
-          status.textContent = "⚠️ Error al enviar el mensaje.";
+          status.textContent = "⚠️ Error al enviar el mensaje. Por favor, intenta de nuevo más tarde.";
+          status.className = "text-center mt-6 text-yellow-600 font-medium status-message";
         }
-      } catch {
-        status.textContent = "❌ No se pudo conectar con el servidor.";
+      } catch (error) {
+        console.error('Error:', error);
+        status.textContent = "❌ No se pudo conectar con el servidor. Por favor, intenta de nuevo más tarde.";
+        status.className = "text-center mt-6 text-red-600 font-medium status-message";
       }
     });
   </script>

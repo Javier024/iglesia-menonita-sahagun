@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+   <link rel="icon" type="image/png" href="assets/logos.jpg">
   <title>Galería — Iglesia Menonita Nueva Vida en Cristo Jesús</title>
   <meta name="description" content="Galería de fotos — Iglesia Menonita Nueva Vida en Cristo Jesús, Sahagún Córdoba.">
 
@@ -18,10 +19,284 @@
     .foto-item {
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
       transition: all 0.4s ease;
+      cursor: pointer;
     }
     .foto-item:hover {
       transform: translateY(-6px) scale(1.02);
       box-shadow: 0 10px 18px rgba(16, 185, 129, 0.25);
+    }
+    
+    /* Efecto de escritura para el título principal */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+    
+    .typing-effect {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid white;
+      animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+    }
+
+    /* Estilos para el Lightbox mejorado */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+      animation: fadeIn 0.4s;
+    }
+
+    .lightbox-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding-bottom: 80px;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 80vh;
+      object-fit: contain;
+      animation: zoomIn 0.4s;
+    }
+
+    .lightbox-info {
+      color: white;
+      text-align: center;
+      margin-top: 1rem;
+      max-width: 90%;
+    }
+
+    .lightbox-controls {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      padding: 15px;
+      z-index: 1000;
+    }
+
+    .lightbox-controls > :first-child { margin-right: auto; }
+    .lightbox-controls > :last-child { margin-left: auto; }
+
+    .lightbox-close, .lightbox-prev, .lightbox-next {
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    .lightbox-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .lightbox-action-btn {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .lightbox-action-btn:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Estilos para el carrusel */
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      background-color: #f3f4f6; /* Añadido un color de fondo */
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 400px;
+      display: flex; /* Usar flex para centrar la imagen */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-slide img {
+      max-width: 100%; /* La imagen no excederá el ancho del contenedor */
+      max-height: 100%; /* La imagen no excederá la altura del contenedor */
+      object-fit: contain; /* <-- CAMBIO CLAVE: Muestra la imagen completa sin recortar */
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7);
+      color: #333;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 10;
+    }
+
+    .carousel-btn:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .carousel-prev {
+      left: 10px;
+    }
+
+    .carousel-next {
+      right: 10px;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .carousel-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .carousel-indicator.active {
+      background-color: white;
+    }
+
+    /* Estilos para vista de lista */
+    .list-view .foto-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .list-view .foto-item img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .list-view .foto-item-content {
+      padding: 1rem;
+      flex-grow: 1;
+    }
+
+    /* Estilos para botón de vista */
+    .view-toggle {
+      display: flex;
+      gap: 5px;
+      background-color: #f3f4f6;
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .view-btn {
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #6b7280;
+      transition: all 0.3s;
+    }
+
+    .view-btn.active {
+      background-color: white;
+      color: #10b981;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos para carga progresiva */
+    .load-more {
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .load-more-btn {
+      background: linear-gradient(to right, #059669, #2563eb);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .load-more-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos para contador de fotos */
+    .photo-counter {
+      background-color: #f3f4f6;
+      border-radius: 8px;
+      padding: 8px 15px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
     }
   </style>
 </head>
@@ -46,6 +321,7 @@
       <ul id="menu" class="hidden md:flex space-x-6 font-medium">
         <li><a href="index.html" class="hover:text-yellow-300">Inicio</a></li>
         <li><a href="quienes-somos.html" class="hover:text-yellow-300">Quiénes somos</a></li>
+        <li><a href="ministerios.html" class="hover:text-yellow-300 transition-colors">Ministerios</a></li>
         <li><a href="fotos.html" class="text-yellow-300 font-semibold">Fotos</a></li>
         <li><a href="contacto.html" class="hover:text-yellow-300">Contacto</a></li>
       </ul>
@@ -56,6 +332,7 @@
       <ul class="flex flex-col text-center py-3 space-y-2 text-white">
         <li><a href="index.html" class="block py-1 hover:text-yellow-300">Inicio</a></li>
         <li><a href="quienes-somos.html" class="block py-1 hover:text-yellow-300">Quiénes somos</a></li>
+        <li><a href="ministerios.html" class="block py-1 hover:text-yellow-300 transition-colors">Ministerios</a></li>
         <li><a href="fotos.html" class="block py-1 text-yellow-300 font-semibold">Fotos</a></li>
         <li><a href="contacto.html" class="block py-1 hover:text-yellow-300">Contacto</a></li>
       </ul>
@@ -66,33 +343,93 @@
   <section class="fade-in relative bg-center bg-cover py-24 px-4" style="background-image: url('assets/hero-bg2.jpg');">
     <div class="absolute inset-0 bg-emerald-900/50"></div>
     <div class="relative max-w-5xl mx-auto text-center text-white">
-      <h2 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">Galería de Momentos</h2>
+      <h2 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight typing-effect">Galería de Momentos</h2>
       <p class="text-lg md:text-xl opacity-90">Capturas de fe, comunidad y servicio.<br>Así vivimos la obra de Cristo juntos.</p>
+    </div>
+  </section>
+
+  <!-- CARRUSEL DE FOTOS DESTACADAS -->
+  <section class="fade-in py-10 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-2xl font-bold text-emerald-800 mb-6 text-center">Momentos Destacados</h3>
+      <div class="carousel-container">
+        <div class="carousel" id="carousel">
+          <div class="carousel-slide">
+            <img src="assets/iglesia1.jpg" alt="Culto Dominical">
+          </div>
+          <div class="carousel-slide">
+            <img src="assets/justapaz1.jpg" alt="Taller de Paz">
+          </div>
+          <div class="carousel-slide">
+            <img src="assets/ccm1.jpg" alt="Campaña de Ayuda">
+          </div>
+          <div class="carousel-slide">
+            <img src="assets/evento1.jpg" alt="Celebración de Aniversario">
+          </div>
+        </div>
+        <button class="carousel-btn carousel-prev" id="carouselPrev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn carousel-next" id="carouselNext">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="carousel-indicators" id="carouselIndicators">
+          <div class="carousel-indicator active" data-slide="0"></div>
+          <div class="carousel-indicator" data-slide="1"></div>
+          <div class="carousel-indicator" data-slide="2"></div>
+          <div class="carousel-indicator" data-slide="3"></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FRASE INSPIRADORA -->
   <div class="fade-in text-center max-w-3xl mx-auto my-10 px-4">
-    <p class="text-emerald-800 text-lg italic">“Cada fotografía cuenta una historia de fe, esperanza y amor en acción.”</p>
+    <p class="text-emerald-800 text-lg italic">"Cada fotografía cuenta una historia de fe, esperanza y amor en acción."</p>
   </div>
 
-  <!-- FILTROS -->
+  <!-- BARRA DE HERRAMIENTAS (CON CONTADOR) -->
+  <div class="fade-in container mx-auto mb-6 px-4">
+    <div class="flex justify-between items-center">
+      <!-- Contador de fotos -->
+      <div class="photo-counter" id="photoCounter">
+        Mostrando <span id="visibleCount">0</span> de <span id="totalCount">0</span> fotos
+      </div>
+      
+      <!-- Controles de vista -->
+      <div class="view-toggle">
+        <button class="view-btn active" id="gridViewBtn" title="Vista de cuadrícula">
+          <i class="fas fa-th"></i>
+        </button>
+        <button class="view-btn" id="listViewBtn" title="Vista de lista">
+          <i class="fas fa-list"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTROS (SIN EL BOTÓN "TODAS") -->
   <div class="fade-in container mx-auto text-center mb-10 px-4">
     <div class="flex flex-wrap justify-center gap-3">
-      <button class="filtro-btn active bg-gradient-to-r from-green-700 to-emerald-500 text-white px-5 py-2 rounded-full font-semibold shadow-md transition" data-filtro="todos">Todas</button>
       <button class="filtro-btn border border-emerald-700 text-emerald-700 bg-white px-5 py-2 rounded-full font-semibold hover:bg-emerald-700 hover:text-white transition" data-filtro="iglesia">Iglesia</button>
       <button class="filtro-btn border border-blue-700 text-blue-700 bg-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 hover:text-white transition" data-filtro="justapaz">Justapaz</button>
       <button class="filtro-btn border border-teal-600 text-teal-700 bg-white px-5 py-2 rounded-full font-semibold hover:bg-teal-600 hover:text-white transition" data-filtro="ccm">CCM</button>
+      <button class="filtro-btn border border-purple-600 text-purple-700 bg-white px-5 py-2 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition" data-filtro="eventos">Eventos</button>
     </div>
+  </div>
+
+  <!-- MENSAJE DE NO RESULTADOS -->
+  <div id="noResults" class="text-center py-10">
+      <p class="text-xl text-gray-600">Por favor, selecciona una categoría para ver las fotos.</p>
   </div>
 
   <!-- GALERÍA -->
   <section class="fade-in max-w-6xl mx-auto px-4 pb-20">
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="galeria">
-
-      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="iglesia">
+      <!-- Fotos de Iglesia -->
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="iglesia" data-title="Culto Dominical" data-desc="Adoración y enseñanza cada domingo.">
         <div class="relative overflow-hidden">
-          <img src="assets/iglesia1.jpg" alt="Culto Dominical" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110">
+          <img src="assets/iglesia1.jpg" alt="Culto Dominical" title="Culto Dominical en la Iglesia Menonita" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/iglesia1.jpg">
         </div>
         <div class="p-5">
           <h6 class="font-bold text-emerald-800 text-lg mb-1">Culto Dominical</h6>
@@ -100,9 +437,9 @@
         </div>
       </div>
 
-      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="iglesia">
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="iglesia" data-title="Escuela Bíblica" data-desc="Aprendizaje bíblico para todas las edades.">
         <div class="relative overflow-hidden">
-          <img src="assets/iglesia2.jpg" alt="Escuela Bíblica" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110">
+          <img src="assets/iglesia2.jpg" alt="Escuela Bíblica" title="Niños aprendiendo en la Escuela Bíblica Dominical" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/iglesia2.jpg">
         </div>
         <div class="p-5">
           <h6 class="font-bold text-emerald-800 text-lg mb-1">Escuela Bíblica</h6>
@@ -110,80 +447,423 @@
         </div>
       </div>
 
-      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="justapaz">
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="iglesia" data-title="Grupo de Jóvenes" data-desc="Formando discípulos con visión de futuro.">
         <div class="relative overflow-hidden">
-          <img src="assets/justapaz1.jpg" alt="Taller de Paz" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110">
+          <img src="assets/iglesia3.jpg" alt="Grupo de Jóvenes" title="Grupo de jóvenes de la iglesia en una actividad" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/iglesia3.jpg">
+        </div>
+        <div class="p-5">
+          <h6 class="font-bold text-emerald-800 text-lg mb-1">Grupo de Jóvenes</h6>
+          <p class="text-emerald-700 text-sm">Formando discípulos con visión de futuro.</p>
+        </div>
+      </div>
+
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="iglesia" data-title="Culto Especial" data-desc="Celebrando fe y comunidad.">
+        <div class="relative overflow-hidden">
+          <img src="assets/iglesia4.jpg" alt="Culto Especial" title="Celebración de un culto especial de acción de gracias" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/iglesia4.jpg">
+        </div>
+        <div class="p-5">
+          <h6 class="font-bold text-emerald-800 text-lg mb-1">Culto Especial</h6>
+          <p class="text-emerald-700 text-sm">Celebrando fe y comunidad.</p>
+        </div>
+      </div>
+
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="iglesia" data-title="Reunión de Oración" data-desc="Buscando juntos la dirección de Dios.">
+        <div class="relative overflow-hidden">
+          <img src="assets/iglesia5.jpg" alt="Reunión de Oración" title="Miembros de la iglesia en una reunión de oración" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/iglesia5.jpg">
+        </div>
+        <div class="p-5">
+          <h6 class="font-bold text-emerald-800 text-lg mb-1">Reunión de Oración</h6>
+          <p class="text-emerald-700 text-sm">Buscando juntos la dirección de Dios.</p>
+        </div>
+      </div>
+
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="iglesia" data-title="Bautismo" data-desc="Celebrando nuevos compromisos con Cristo.">
+        <div class="relative overflow-hidden">
+          <img src="assets/iglesia6.jpg" alt="Bautismo" title="Ceremonia de bautismo en la iglesia" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/iglesia6.jpg">
+        </div>
+        <div class="p-5">
+          <h6 class="font-bold text-emerald-800 text-lg mb-1">Bautismo</h6>
+          <p class="text-emerald-700 text-sm">Celebrando nuevos compromisos con Cristo.</p>
+        </div>
+      </div>
+
+      <!-- Separador Justapaz -->
+      <div class="col-span-full bg-emerald-100 p-4 rounded-xl shadow-md text-center" data-cat="justapaz">
+        <h3 class="text-2xl font-bold text-blue-800">Taller Pan y Paz</h3>
+      </div>
+
+      <!-- Fotos de Justapaz -->
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="justapaz" data-title="Taller de Paz y Reconciliación" data-desc="Promoviendo justicia y convivencia pacífica.">
+        <div class="relative overflow-hidden">
+          <img src="assets/justapaz1.jpg" alt="Taller de Paz" title="Participantes en el Taller Pan y Paz" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/justapaz1.jpg">
         </div>
         <div class="p-5">
           <h6 class="font-bold text-blue-700 text-lg mb-1">Taller de Paz y Reconciliación</h6>
           <p class="text-emerald-700 text-sm">Promoviendo justicia y convivencia pacífica.</p>
         </div>
       </div>
-
-      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="ccm">
+      
+      <!-- Fotos de CCM -->
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="ccm" data-title="Campaña de Ayuda" data-desc="Llevando esperanza a quienes más lo necesitan.">
         <div class="relative overflow-hidden">
-          <img src="assets/ccm1.jpg" alt="Campaña de Ayuda" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110">
+          <img src="assets/ccm1.jpg" alt="Campaña de Ayuda" title="Voluntarios de CCM en una campaña de ayuda" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/ccm1.jpg">
         </div>
         <div class="p-5">
           <h6 class="font-bold text-teal-700 text-lg mb-1">Campaña de Ayuda</h6>
-          <p class="text-emerald-700 text-sm">Entrega solidaria de alimentos y apoyo fraternal.</p>
+          <p class="text-emerald-700 text-sm">Llevando esperanza a quienes más lo necesitan.</p>
         </div>
       </div>
 
-      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="ccm">
+       <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="ccm" data-title="Campaña de Ayuda" data-desc="Llevando esperanza a quienes más lo necesitan.">
         <div class="relative overflow-hidden">
-          <img src="assets/ccm2.jpg" alt="Voluntariado CCM" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110">
+          <img src="assets/ccm2.jpg" alt="Campaña de Ayuda" title="Voluntarios de CCM en una campaña de ayuda" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/ccm1.jpg">
         </div>
         <div class="p-5">
-          <h6 class="font-bold text-teal-700 text-lg mb-1">Voluntariado CCM</h6>
-          <p class="text-emerald-700 text-sm">Acciones de fe y esperanza en comunidad.</p>
+          <h6 class="font-bold text-teal-700 text-lg mb-1">Campaña de Ayuda</h6>
+          <p class="text-emerald-700 text-sm">Llevando esperanza a quienes más lo necesitan.</p>
         </div>
       </div>
 
+      <!-- Fotos de Eventos -->
+      <div class="foto-item bg-white rounded-2xl overflow-hidden" data-cat="eventos" data-title="Celebración de Aniversario" data-desc="Conmemorando años de fe y comunidad.">
+        <div class="relative overflow-hidden">
+          <img src="assets/evento1.jpg" alt="Celebración de Aniversario" title="Celebrando el aniversario de la iglesia" loading="lazy" class="w-full h-64 object-cover transform transition duration-500 hover:scale-110" data-highres="assets/evento1.jpg">
+        </div>
+        <div class="p-5">
+          <h6 class="font-bold text-purple-700 text-lg mb-1">Celebración de Aniversario</h6>
+          <p class="text-emerald-700 text-sm">Conmemorando años de fe y comunidad.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTÓN CARGAR MÁS -->
+    <div class="load-more hidden" id="loadMoreContainer">
+      <button class="load-more-btn" id="loadMoreBtn">Cargar más fotos</button>
     </div>
   </section>
 
- <footer class="bg-emerald-800 text-emerald-100 py-8 text-center shadow-inner">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 px-4">
-    
-    <!-- Ubicación -->
-    <div class="flex flex-col items-center md:items-start text-center md:text-left">
-      <strong class="text-lg">Colombia</strong>
-      <small class="text-emerald-200">Sahagún — Córdoba</small>
+  <!-- FOOTER -->
+  <footer class="bg-emerald-800 text-emerald-100 py-8 text-center shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 px-4">
+      <div class="flex flex-col items-center md:items-start text-center md:text-left">
+        <strong class="text-lg">Colombia</strong>
+        <small class="text-emerald-200">Sahagún — Córdoba</small>
+      </div>
+      <div class="flex gap-6 text-2xl justify-center">
+        <a href="https://instagram.com/iglesianuevavida" target="_blank" class="hover:text-pink-400 transition-colors" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/iglesianuevavida" target="_blank" class="hover:text-blue-400 transition-colors" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.youtube.com/@iglesianuevavida" target="_blank" class="hover:text-red-500 transition-colors" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="flex flex-col items-center md:items-end text-center md:text-right">
+        <small class="text-emerald-200 leading-tight">© <span id="year"></span> Comunidad Cristiana Menonita <br> Nueva Vida en Cristo Jesús.</small>
+      </div>
     </div>
-
-    <!-- Redes sociales -->
-    <div class="flex gap-6 text-2xl justify-center">
-      <a href="https://instagram.com/iglesianuevavida" target="_blank" class="hover:text-pink-400 transition-colors">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://facebook.com/iglesianuevavida" target="_blank" class="hover:text-blue-400 transition-colors">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a href="https://www.youtube.com/@iglesianuevavida" target="_blank" class="hover:text-red-500 transition-colors">
-        <i class="fab fa-youtube"></i>
-      </a>
-    </div>
-
-    <!-- Derechos -->
-    <div class="flex flex-col items-center md:items-end text-center md:text-right">
-      <small class="text-emerald-200 leading-tight">
-        © <span id="year"></span> Comunidad Cristiana Menonita <br>
-        Nueva Vida en Cristo Jesús. 
-      </small>
-    </div>
-
-  </div>
-</footer>
+  </footer>
 
   <!-- BOTÓN SUBIR -->
-  <button id="backToTop" class="hidden fixed bottom-10 right-6 bg-gradient-to-r from-green-600 to-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition flex items-center justify-center">
+  <button id="backToTop" class="hidden fixed bottom-10 right-6 bg-gradient-to-r from-green-600 to-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition flex items-center justify-center" aria-label="Volver arriba">
     <i class="fa-solid fa-arrow-up text-xl"></i>
   </button>
+
+  <!-- LIGHTBOX MEJORADO -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-container">
+      <img class="lightbox-content" id="lightbox-img">
+      <div class="lightbox-info">
+        <h3 id="lightbox-title" class="text-xl font-bold mb-2"></h3>
+        <p id="lightbox-desc" class="text-sm opacity-80 mb-4"></p>
+      </div>
+    </div>
+    <div class="lightbox-controls">
+      <a class="lightbox-prev">&#10094;</a>
+      <div class="lightbox-actions">
+        <button class="lightbox-action-btn" id="downloadBtn" title="Descargar">
+          <i class="fas fa-download"></i>
+        </button>
+        <button class="lightbox-action-btn" id="shareBtn" title="Compartir">
+          <i class="fas fa-share-alt"></i>
+        </button>
+        <button class="lightbox-action-btn" id="fullscreenBtn" title="Pantalla completa">
+          <i class="fas fa-expand"></i>
+        </button>
+      </div>
+      <span class="lightbox-close">&times;</span>
+      <a class="lightbox-next">&#10095;</a>
+    </div>
+  </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // --- Variables globales ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    const allFotoItems = document.querySelectorAll('.foto-item');
+    const separadores = document.querySelectorAll('[data-cat]:not(.foto-item)');
+    const galeria = document.getElementById('galeria');
+    const noResultsMsg = document.getElementById('noResults');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreContainer = document.getElementById('loadMoreContainer');
+    const visibleCountEl = document.getElementById('visibleCount');
+    const totalCountEl = document.getElementById('totalCount');
+    const photoCounter = document.getElementById('photoCounter');
+    
+    let currentImageIndex = 0;
+    let filtroActivo = null;
+    let esVistaLista = false;
+    let fotosMostradas = 6;
+    const incrementoFotos = 6;
+
+    // --- Funcionalidad del carrusel ---
+    const carousel = document.getElementById('carousel');
+    const carouselSlides = carousel.querySelectorAll('.carousel-slide');
+    const carouselPrev = document.getElementById('carouselPrev');
+    const carouselNext = document.getElementById('carouselNext');
+    const carouselIndicators = document.querySelectorAll('.carousel-indicator');
+    let currentSlide = 0;
+
+    function updateCarousel() {
+      carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      carouselIndicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    carouselPrev.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+      updateCarousel();
+    });
+
+    carouselNext.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % carouselSlides.length;
+      updateCarousel();
+    });
+
+    carouselIndicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        currentSlide = index;
+        updateCarousel();
+      });
+    });
+
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % carouselSlides.length;
+      updateCarousel();
+    }, 5000);
+
+    // --- Funcionalidad de vista (cuadrícula/lista) ---
+    const gridViewBtn = document.getElementById('gridViewBtn');
+    const listViewBtn = document.getElementById('listViewBtn');
+
+    gridViewBtn.addEventListener('click', () => {
+      esVistaLista = false;
+      galeria.classList.remove('list-view');
+      gridViewBtn.classList.add('active');
+      listViewBtn.classList.remove('active');
+    });
+
+    listViewBtn.addEventListener('click', () => {
+      esVistaLista = true;
+      galeria.classList.add('list-view');
+      listViewBtn.classList.add('active');
+      gridViewBtn.classList.remove('active');
+    });
+
+    // --- FUNCIÓN CORREGIDA para aplicar filtros ---
+    function aplicarFiltros() {
+        // 1. Ocultar todo primero
+        allFotoItems.forEach(item => item.style.display = 'none');
+        separadores.forEach(s => s.style.display = 'none');
+
+        // 2. Si no hay filtro activo, mostrar mensaje y salir
+        if (!filtroActivo) {
+            noResultsMsg.textContent = "Por favor, selecciona una categoría para ver las fotos.";
+            noResultsMsg.classList.remove('hidden');
+            loadMoreContainer.classList.add('hidden');
+            photoCounter.style.display = 'none'; // Ocultar contador
+            return;
+        }
+
+        //3. Filtrar elementos por categoría
+        const itemsInCategory = Array.from(allFotoItems).filter(item => item.dataset.cat === filtroActivo);
+        const separatorsInCategory = Array.from(separadores).filter(s => s.dataset.cat === filtroActivo);
+
+        // 4. Mostrar mensaje si no hay resultados en esta categoría
+        if (itemsInCategory.length === 0 && separatorsInCategory.length === 0) {
+            noResultsMsg.textContent = "No se encontraron fotos en esta categoría.";
+            noResultsMsg.classList.remove('hidden');
+            loadMoreContainer.classList.add('hidden');
+            photoCounter.style.display = 'none'; // Ocultar contador
+            return;
+        } else {
+            noResultsMsg.classList.add('hidden');
+            photoCounter.style.display = 'block'; // Mostrar contador
+        }
+
+        // 5. Mostrar los separadores de esta categoría
+        separatorsInCategory.forEach(s => s.style.display = 'block');
+
+        // 6. Aplicar carga progresiva a las fotos de esta categoría y contarlas
+        let visibleCount = 0;
+        itemsInCategory.forEach((item, index) => {
+            if (index < fotosMostradas) {
+                item.style.display = ''; // Mostrar la foto
+                visibleCount++;
+            }
+        });
+        
+        // 7. Actualizar el contador
+        if (visibleCountEl && totalCountEl) {
+            visibleCountEl.textContent = visibleCount;
+            totalCountEl.textContent = itemsInCategory.length;
+        }
+
+        // 8. Mostrar u ocultar el botón "Cargar más"
+        loadMoreContainer.classList.toggle('hidden', itemsInCategory.length <= fotosMostradas);
+    }
+
+    // --- Funcionalidad de carga progresiva ---
+    loadMoreBtn.addEventListener('click', () => {
+      fotosMostradas += incrementoFotos;
+      aplicarFiltros();
+    });
+
+    // --- Funcionalidad del lightbox mejorado ---
+    function openLightbox(imgSrc, index) {
+      lightbox.style.display = 'block';
+      lightboxImg.src = imgSrc;
+      currentImageIndex = index;
+      
+      const fotoItem = allFotoItems[index];
+      lightboxTitle.textContent = fotoItem.dataset.title;
+      lightboxDesc.textContent = fotoItem.dataset.desc;
+      
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function showNextImage() {
+      const visibleItems = Array.from(allFotoItems).filter(item => item.style.display !== 'none');
+      if (visibleItems.length === 0) return;
+      
+      const currentIndexInVisible = visibleItems.findIndex(item => 
+        item.querySelector('img').dataset.highres === lightboxImg.src
+      );
+      
+      const nextIndex = (currentIndexInVisible + 1) % visibleItems.length;
+      const nextImgSrc = visibleItems[nextIndex].querySelector('img').dataset.highres;
+      
+      lightboxImg.src = nextImgSrc;
+      lightboxTitle.textContent = visibleItems[nextIndex].dataset.title;
+      lightboxDesc.textContent = visibleItems[nextIndex].dataset.desc;
+    }
+
+    function showPrevImage() {
+      const visibleItems = Array.from(allFotoItems).filter(item => item.style.display !== 'none');
+      if (visibleItems.length === 0) return;
+      
+      const currentIndexInVisible = visibleItems.findIndex(item => 
+        item.querySelector('img').dataset.highres === lightboxImg.src
+      );
+      
+      const prevIndex = (currentIndexInVisible - 1 + visibleItems.length) % visibleItems.length;
+      const prevImgSrc = visibleItems[prevIndex].querySelector('img').dataset.highres;
+      
+      lightboxImg.src = prevImgSrc;
+      lightboxTitle.textContent = visibleItems[prevIndex].dataset.title;
+      lightboxDesc.textContent = visibleItems[prevIndex].dataset.desc;
+    }
+
+    allFotoItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.querySelector('img').dataset.highres;
+        openLightbox(imgSrc, index);
+      });
+    });
+
+    document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    document.querySelector('.lightbox-next').addEventListener('click', showNextImage);
+    document.querySelector('.lightbox-prev').addEventListener('click', showPrevImage);
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'block') {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        } else if (e.key === 'ArrowRight') {
+          showNextImage();
+        } else if (e.key === 'ArrowLeft') {
+          showPrevImage();
+        }
+      }
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.href = lightboxImg.src;
+      link.download = `foto-nueva-vida-${lightboxTitle.textContent.replace(/\s+/g, '-').toLowerCase()}.jpg`;
+      link.click();
+    });
+
+    document.getElementById('shareBtn').addEventListener('click', () => {
+      if (navigator.share) {
+        navigator.share({
+          title: lightboxTitle.textContent,
+          text: lightboxDesc.textContent,
+          url: window.location.href
+        });
+      } else {
+        const dummy = document.createElement('input');
+        document.body.appendChild(dummy);
+        dummy.value = window.location.href;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        alert('Enlace copiado al portapapeles');
+      }
+    });
+
+    document.getElementById('fullscreenBtn').addEventListener('click', () => {
+      if (lightboxImg.requestFullscreen) {
+        lightboxImg.requestFullscreen();
+      } else if (lightboxImg.webkitRequestFullscreen) { /* Safari */
+        lightboxImg.webkitRequestFullscreen();
+      } else if (lightboxImg.msRequestFullscreen) { /* IE11 */
+        lightboxImg.msRequestFullscreen();
+      }
+    });
+
+    // --- Funcionalidad de filtros ---
+    const btns = document.querySelectorAll('.filtro-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => {
+          b.classList.remove('bg-gradient-to-r', 'from-green-700', 'to-emerald-500', 'text-white');
+          b.classList.add('border');
+        });
+        btn.classList.remove('border');
+        btn.classList.add('bg-gradient-to-r', 'from-green-700', 'to-emerald-500', 'text-white');
+        
+        filtroActivo = btn.dataset.filtro;
+        fotosMostradas = 6;
+        aplicarFiltros();
+      });
+    });
+
+    // --- Funcionalidad existente ---
     const back = document.getElementById('backToTop');
     window.addEventListener('scroll', () => back.classList.toggle('hidden', window.scrollY < 300));
     back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
@@ -192,33 +872,27 @@
     const observer = new IntersectionObserver(entries => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 150);
+          setTimeout(() => entry.target.classList.add('visible'), i * 50);
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1 });
     elements.forEach(el => observer.observe(el));
 
     document.getElementById('menuBtn').addEventListener('click', () => {
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
 
-    const btns = document.querySelectorAll('.filtro-btn');
-    const fotos = document.querySelectorAll('.foto-item');
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('bg-gradient-to-r', 'from-green-700', 'to-emerald-500', 'text-white'));
-        btn.classList.add('bg-gradient-to-r', 'from-green-700', 'to-emerald-500', 'text-white');
-        const filtro = btn.dataset.filtro;
-        fotos.forEach(f => {
-          f.style.opacity = 0;
-          setTimeout(() => {
-            f.style.display = (filtro === 'todos' || f.dataset.cat === filtro) ? 'block' : 'none';
-            setTimeout(() => (f.style.opacity = 1), 150);
-          }, 200);
-        });
-      });
+    // --- Inicialización ---
+    window.addEventListener('DOMContentLoaded', () => {
+      // Ocultar todo al cargar
+      allFotoItems.forEach(f => f.style.display = 'none');
+      separadores.forEach(s => s.style.display = 'none');
+      
+      // Mostrar mensaje inicial
+      noResultsMsg.classList.remove('hidden');
+      loadMoreContainer.classList.add('hidden');
+      photoCounter.style.display = 'none'; // Ocultar contador inicialmente
     });
   </script>
-
 </body>
 </html>

@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ministerios — Comunidad Cristiana Menonita Nueva Vida en Cristo Jesús</title>
+  <meta name="description" content="Conoce los ministerios de la Comunidad Cristiana Menonita Nueva Vida en Cristo Jesús en Sahagún, Córdoba.">
+  <link rel="icon" type="image/png" href="assets/logos.jpg">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    .fade-in { opacity: 0; transform: translateY(25px); transition: all 0.8s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .transition-view { transition: all 0.5s ease; }
+    .hidden-view { opacity: 0; pointer-events: none; transform: scale(0.97); }
+    
+    /* Mejoras de accesibilidad */
+    a:focus, button:focus {
+      outline: 2px solid #10b981;
+      outline-offset: 2px;
+    }
+    
+    /* Animación para la vista de detalle */
+    .slide-enter {
+      animation: slideIn 0.5s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Mejoras para imágenes */
+    .ministry-img {
+      transition: transform 0.3s ease;
+    }
+    
+    .ministry-img:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Efecto para tarjetas */
+    .ministry-card {
+      transition: all 0.3s ease;
+    }
+    
+    .ministry-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    /* Efecto de escritura para el título principal */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+    
+    .typing-effect {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid white;
+      animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-green-50 text-emerald-900 font-sans">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-emerald-800 text-white shadow-lg">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+      <a href="index.html" class="flex items-center gap-3" aria-label="Inicio">
+        <img src="assets/logos.jpg" class="w-14 h-14 rounded-full border-2 border-white" alt="Logo Iglesia">
+        <div>
+          <h1 class="text-base font-semibold">Comunidad Cristiana Menonita Nueva Vida en Cristo Jesús</h1>
+          <p class="text-sm text-emerald-100">Sahagún — Córdoba</p>
+        </div>
+      </a>
+      
+      <!-- Botón menú móvil -->
+      <button id="menuBtn" class="md:hidden text-2xl" aria-label="Abrir menú">
+        <i class="fa fa-bars"></i>
+      </button>
+      
+      <ul class="hidden md:flex space-x-6 font-medium">
+        <li><a href="index.html" class="hover:text-yellow-300 transition-colors">Inicio</a></li>
+        <li><a href="quienes-somos.html" class="hover:text-yellow-300 transition-colors">Quiénes somos</a></li>
+     <li><a href="ministerios.html" class="hover:text-yellow-300 transition-colors">Ministerios</a></li>
+        <li><a href="fotos.html" class="hover:text-yellow-300 transition-colors">Fotos</a></li>
+        <li><a href="contacto.html" class="hover:text-yellow-300 transition-colors">Contacto</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden md:hidden bg-emerald-700 border-t border-emerald-600">
+      <ul class="flex flex-col text-center py-3 space-y-2 text-white">
+        <li><a href="index.html" class="block py-1 hover:text-yellow-300 transition-colors">Inicio</a></li>
+        <li><a href="quienes-somos.html" class="block py-1 hover:text-yellow-300 transition-colors">Quiénes somos</a></li>
+        <li><a href="ministerios.html" class="hover:text-yellow-300 transition-colors">Ministerios</a></li>
+        <li><a href="fotos.html" class="block py-1 hover:text-yellow-300 transition-colors">Fotos</a></li>
+        <li><a href="contacto.html" class="block py-1 hover:text-yellow-300 transition-colors">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ENCABEZADO -->
+  <section class="bg-emerald-900 text-white py-16 text-center fade-in">
+    <h1 class="text-4xl font-bold mb-3 typing-effect">Nuestros Ministerios</h1>
+    <p class="text-emerald-100 max-w-2xl mx-auto">Descubre las áreas donde servimos a Dios con amor, fe y compromiso.</p>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main id="contenedor" class="relative max-w-7xl mx-auto px-6 py-16">
+
+    <!-- VISTA GRID -->
+    <div id="vista-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 transition-view fade-in">
+      <template id="card-template">
+        <div class="ministry-card cursor-pointer bg-white rounded-2xl shadow-lg p-8 text-center" role="button" tabindex="0" aria-label="Ver detalles del ministerio">
+          <i class="icon fa-solid text-green-700 text-4xl mb-4" aria-hidden="true"></i>
+          <h3 class="titulo text-2xl font-semibold text-emerald-900 mb-2"></h3>
+          <p class="desc text-emerald-700"></p>
+        </div>
+      </template>
+    </div>
+
+    <!-- VISTA DETALLE -->
+    <div id="vista-detalle" class="hidden-view absolute top-0 left-0 w-full bg-green-50 min-h-full p-6 rounded-2xl transition-view"></div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-emerald-800 text-emerald-100 py-8 text-center shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 px-4">
+      
+      <!-- Ubicación -->
+      <div class="flex flex-col items-center md:items-start text-center md:text-left">
+        <strong class="text-lg">Colombia</strong>
+        <small class="text-emerald-200">Sahagún — Córdoba</small>
+      </div>
+
+      <!-- Redes sociales -->
+      <div class="flex gap-6 text-2xl justify-center">
+        <a href="https://instagram.com/iglesianuevavida" target="_blank" class="hover:text-pink-400 transition-colors" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://facebook.com/iglesianuevavida" target="_blank" class="hover:text-blue-400 transition-colors" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.youtube.com/@iglesianuevavida" target="_blank" class="hover:text-red-500 transition-colors" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+
+      <!-- Derechos -->
+      <div class="flex flex-col items-center md:items-end text-center md:text-right">
+        <small class="text-emerald-200 leading-tight">
+          © <span id="year"></span> Comunidad Cristiana Menonita <br>
+          Nueva Vida en Cristo Jesús. 
+        </small>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- BOTÓN SUBIR -->
+  <button id="backToTop" class="hidden fixed bottom-10 right-6 bg-gradient-to-r from-green-600 to-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition flex items-center justify-center" aria-label="Volver arriba">
+    <i class="fa-solid fa-arrow-up text-xl"></i>
+  </button>
+
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Botón de subir
+    const back = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => back.classList.toggle('hidden', window.scrollY < 300));
+    back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    
+    // Fade-in general
+    const elements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 150);
+        }
+      });
+    }, { threshold: 0.2 });
+    elements.forEach(el => observer.observe(el));
+    
+    // Menú móvil
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+
+    // Datos de ministerios
+    const ministerios = [
+      {
+        id: 'alabanza',
+        icon: 'fa-guitar',
+        titulo: 'Ministerio de Alabanza',
+        desc: 'Guiamos a la congregación en adoración y alabanza, buscando la presencia de Dios a través de la música. Ensayamos semanalmente y participamos en cada servicio principal.',
+        actividades: 'Ensayos: Miércoles 7:00 PM • Participación en cultos dominicales • Conciertos de adoración',
+        fotos: ['alabanza1.jpg','alabanza2.jpg','alabanza3.jpg']
+      },
+      {
+        id: 'jovenes',
+        icon: 'fa-users',
+        titulo: 'Ministerio de Jóvenes',
+        desc: 'Inspiramos a los jóvenes a vivir una fe auténtica. Organizamos reuniones semanales, noches de oración y actividades de servicio comunitario.',
+        actividades: 'Reuniones: Sábados 6:00 PM • Campamentos • Espacios de discipulado',
+        fotos: ['jovenes1.jpg','jovenes2.jpg','jovenes3.jpg']
+      },
+      {
+        id: 'infantil',
+        icon: 'fa-child-reaching',
+        titulo: 'Ministerio Infantil',
+        desc: 'Formamos a los niños en los principios cristianos mediante juegos, cantos y enseñanza bíblica adaptada a su edad.',
+        actividades: 'Escuela Dominical: Domingos 9:00 AM • Talleres creativos • Actividades familiares',
+        fotos: ['infantil1.jpg','infantil2.jpg','infantil3.jpg']
+      },
+      {
+        id: 'damas',
+        icon: 'fa-person-dress',
+        titulo: 'Ministerio de Damas',
+        desc: 'Apoyamos el crecimiento espiritual, emocional y social de las mujeres, creando espacios de apoyo, oración y enseñanza bíblica.',
+        actividades: 'Encuentros de mujeres: Viernes 5:00 PM • Charlas y retiros • Apoyo comunitario',
+        fotos: ['damas1.jpg','damas2.jpg','damas3.jpg']
+      },
+      {
+        id: 'oracion',
+        icon: 'fa-hands-praying',
+        titulo: 'Ministerio de Oración',
+        desc: 'Un grupo de intercesores comprometidos que oran por la iglesia, las familias y la comunidad, creyendo en el poder transformador de la oración.',
+        actividades: 'Reuniones de oración: Martes 6:30 PM • Vigilias mensuales • Cadena de intercesión',
+        fotos: ['oracion1.jpg','oracion2.jpg','oracion3.jpg']
+      },
+      {
+        id: 'misiones',
+        icon: 'fa-globe',
+        titulo: 'Ministerio de Misiones',
+        desc: 'Extendemos el amor de Cristo a comunidades rurales y zonas vulnerables, llevando ayuda social y el mensaje del Evangelio.',
+        actividades: 'Salidas misioneras • Jornadas de salud y evangelismo • Apoyo a nuevas congregaciones',
+        fotos: ['misiones1.jpg','misiones2.jpg','misiones3.jpg']
+      }
+    ];
+
+    const grid = document.getElementById('vista-grid');
+    const cardTemplate = document.getElementById('card-template').content;
+    const detalle = document.getElementById('vista-detalle');
+
+    // Construir tarjetas
+    ministerios.forEach(m => {
+      const card = cardTemplate.cloneNode(true);
+      card.querySelector('.icon').classList.add(m.icon);
+      card.querySelector('.titulo').textContent = m.titulo;
+      card.querySelector('.desc').textContent = m.desc.substring(0, 80) + '...';
+      
+      const cardElement = card.firstElementChild;
+      
+      // Evento click
+      cardElement.onclick = () => abrirDetalle(m);
+      
+      // Soporte para navegación con teclado
+      cardElement.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          abrirDetalle(m);
+        }
+      });
+      
+      grid.appendChild(card);
+    });
+
+    function abrirDetalle(min) {
+      grid.classList.add('hidden-view');
+      setTimeout(() => {
+        grid.classList.add('hidden');
+        detalle.innerHTML = `
+          <div class="max-w-5xl mx-auto text-center slide-enter">
+            <button onclick="cerrarDetalle()" class="mb-8 flex items-center gap-2 text-emerald-700 hover:text-emerald-900 transition p-2 rounded-lg hover:bg-emerald-100" aria-label="Volver a ministerios">
+              <i class="fa-solid fa-arrow-left"></i> Volver a ministerios
+            </button>
+            <i class="fa-solid ${min.icon} text-green-700 text-5xl mb-4" aria-hidden="true"></i>
+            <h2 class="text-4xl font-bold text-emerald-900 mb-4">${min.titulo}</h2>
+            <p class="text-emerald-700 text-lg mb-6 leading-relaxed">${min.desc}</p>
+            <div class="bg-white rounded-xl p-6 mb-8 shadow-md">
+              <p class="text-emerald-600 italic"><strong>Actividades:</strong> ${min.actividades}</p>
+            </div>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+              ${min.fotos.map(f => `
+                <div class="overflow-hidden rounded-xl shadow-lg">
+                  <img src="assets/ministerios/${f}" class="ministry-img w-full h-64 object-cover" alt="${min.titulo} - Imagen ${min.fotos.indexOf(f)+1}">
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+        detalle.classList.remove('hidden-view');
+        detalle.classList.remove('hidden');
+        
+        // Enfocar el título para mejor accesibilidad
+        setTimeout(() => {
+          const titulo = detalle.querySelector('h2');
+          if (titulo) titulo.focus();
+        }, 100);
+      }, 300);
+    }
+
+    function cerrarDetalle() {
+      detalle.classList.add('hidden-view');
+      setTimeout(() => {
+        detalle.classList.add('hidden');
+        grid.classList.remove('hidden');
+        setTimeout(() => grid.classList.remove('hidden-view'), 50);
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
